@@ -3,8 +3,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Login from './src/pages/Login';
-import Register from './src/pages/Register';
+import Login from './src/pages/Login/index';
+import Register from './src/pages/Register/index';
+import Tabs from './src/pages/Tabs/index';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -23,6 +24,10 @@ export default function App() {
         <Screen
           name='Register'
           component={Register}
+        />
+        <Screen 
+          name='Tabs'
+          component={Tabs}
         />
       </Navigator>
     </NavigationContainer>

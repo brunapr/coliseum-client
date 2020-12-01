@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "colliseum-promoter",
-    "slug": "colliseum-promoter",
+    "name": "coliseum-cliente",
+    "slug": "coliseum-cliente",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
