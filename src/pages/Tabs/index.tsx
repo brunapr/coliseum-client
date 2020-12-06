@@ -1,16 +1,13 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
-import { View, Text, Button, TouchableHighlight } from 'react-native';
+import React from 'react';
 
 import { BiHome, BiSearch, BiMap, BiSticker, BiUser } from "react-icons/bi";
-import { TabBar, IconBox, IconButton, Container, Content } from './styles';
 
 import Account from './Account/index';
 import Home from './Home/index';
 import Search from './Search/index';
 import Map from './Map/index';
 import Event from './Event/index';
-import { ScrollView } from 'react-native-gesture-handler';
 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
