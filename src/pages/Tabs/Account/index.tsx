@@ -1,12 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { View, Text, Button, TextInput, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import { InputLabel, Input } from '../../styles';
 import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox } from './styles';
-import { useState } from 'react';
 
 Account.navigationOptions = {
     header: null,

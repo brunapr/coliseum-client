@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View } from 'react-native';
+import { TouchableHighlight, View } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
 
 import { Input } from '../../styles';
 import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent } from './styles';
@@ -13,7 +14,11 @@ Search.navigationOptions = {
     header: null,
   };
 
-  function useComponentVisible(initialIsVisible: any) {
+interface EditSearch {
+    text: string
+}
+
+function useComponentVisible(initialIsVisible: any) {
     const [isComponentVisible, setIsComponentVisible] = useState(
       initialIsVisible
     );
@@ -25,7 +30,7 @@ Search.navigationOptions = {
       }
     };
   
-    const handleClickOutside = event => {
+    const handleClickOutside = (event: { target: any; }) => {
       if (ref.current && !ref.current.contains(event.target)) {
         setIsComponentVisible(false);
       }
@@ -41,14 +46,25 @@ Search.navigationOptions = {
     });
   
     return { ref, isComponentVisible, setIsComponentVisible };
-  }
+}
 
 export default function Search() {
-    const {
-        ref,
-        isComponentVisible,
-        setIsComponentVisible
-      } = useComponentVisible(false);
+
+    // Faz o componente de filtro sumir quando clicado fora
+    const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+
+    // Faz o View da pesquisa aparecer
+    const [ searchText, setSearchText ] = useState(false);
+
+    // Valor do input --> o que será mandado pro back <--
+    const [ search, setSearch ] = useState('');
+
+    const { control, handleSubmit } = useForm({ mode: 'onTouched' });
+    const onSubmit = (data: EditSearch) => { 
+      setSearchText(true);
+      setSearch(data.text);
+      console.log(data) 
+    };
 
     return(
         <Content>
@@ -71,19 +87,35 @@ export default function Search() {
                 }}
             />
                 <InputBox>
-                    <BiSearch color="#535353" size={20}/>
-                    <Input placeholder="Pesquise aqui"/>
+                    <TouchableHighlight onPress={handleSubmit(onSubmit)}>
+                      <BiSearch color="#535353" size={20}/>
+                    </TouchableHighlight>
+
+                    <Controller
+                        control={control}
+                        render={({ onChange, value }) => (
+                            <Input
+                                placeholder="Pesquise aqui"
+                                onChangeText={(value) => onChange(value)}
+                                value={value}
+                            />
+                        )}
+                        name='text'
+                        defaultValue=''
+                    />
                 </InputBox>
                 <FilterBox onPress={() => setIsComponentVisible(true)}>
                     <BiSlider color="#fff" size={24}/>
                 </FilterBox> 
             </Header>
-
+            { searchText && 
             <TextBox>
                 <SearchText>Você pesquisou por... </SearchText> 
                 {/* depois colocar o value do input quando for pesquisar */}
-                <SearchText style={{color: "#32CFE3"}}>Food Truck</SearchText>
+            <SearchText style={{color: "#32CFE3"}}>{search}</SearchText>
             </TextBox>
+            
+            }
 
             {/* componente dos eventos */}
             <View/>
