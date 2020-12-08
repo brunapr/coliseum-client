@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 export const Content = styled.View `
     width: 100%;
@@ -60,3 +60,38 @@ export const FilterComponent = styled.View `
     z-index: 1;
 `;
 
+// export const CardScroll = styled.ScrollView.attrs({
+//     contentContainerStyle: props => {
+//         return {
+//         width: "100%",
+//         height: "70vh",
+
+//         display: "flex",
+//         flexDirection: "column",
+//         alignItems: "center",
+//         }
+//     }
+// }) ``
+
+// export const Scroll = styled.ScrollView.attrs({
+//     contentContainerStyle: () => css`
+//         width: 100%;
+//         height: 70vh;
+//         margin-top: 10%;
+
+//         display: flex;
+//         flex-direction: center;
+//         align-items: center;
+//     `
+//   })``
+
+  export const Scroll = styled.View `
+        width: 100%;
+        height: 75vh;
+        margin-top: 10%;
+        overflow-y: scroll;
+
+        display: flex;
+        flex-direction: center;
+        align-items: center;
+    `;

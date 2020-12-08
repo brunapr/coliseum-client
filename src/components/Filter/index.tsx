@@ -4,8 +4,7 @@ import { RadioButton } from 'react-native-paper';
 
 import { Container, TitleBox, Title, FilterBox, GoFilter, FilterText, ButtonText } from './styles';
 
-export default function Filter() {
-    const [checked, setChecked] = useState('first');
+export default function Filter(props:any) {
 
     return(
         <Container>
@@ -17,8 +16,8 @@ export default function Filter() {
                 <RadioButton
                     value="first"
                     color="#32CFE3"
-                    status={ checked === 'first' ? 'checked' : 'unchecked' }
-                    onPress={() => setChecked('first')}
+                    status={ props.parentChange === 'first' ? 'checked' : 'unchecked' }
+                    onPress={() => props.filterChange('first')}
                 />
                     <FilterText>Procure pelo nome</FilterText>
                 </FilterBox>
@@ -26,13 +25,15 @@ export default function Filter() {
                 <RadioButton
                     value="second"
                     color="#32CFE3"
-                    status={ checked === 'second' ? 'checked' : 'unchecked' }
-                    onPress={() => setChecked('second')}
+                    status={ props.parentChange === 'second' ? 'checked' : 'unchecked' }
+                    onPress={() => props.filterChange('second')}
                 />
+                {console.log(props.parentChange)}
+                {console.log("CONSOLE LOG DO COMPONENTE EM CIMA")}
                     <FilterText>Procure pelo bairro</FilterText>
                 </FilterBox>
 
-            <GoFilter>
+            <GoFilter onPress={() => props.filterClose(false)}>
                 <ButtonText>OK!</ButtonText>
             </GoFilter>
         </Container>

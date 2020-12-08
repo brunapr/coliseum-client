@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { TouchableHighlight, View } from 'react-native';
+import { TouchableHighlight, View, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import { Input } from '../../styles';
-import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent } from './styles';
+import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent, Scroll } from './styles';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import { BiSlider, BiSearch } from 'react-icons/bi';
@@ -59,6 +59,16 @@ export default function Search() {
     // Valor do input --> o que será mandado pro back <--
     const [ search, setSearch ] = useState('');
 
+    // O que será passado para o filtro
+    const [checked, setChecked] = useState('first');
+    function handleFilterChange(changeFilter:any) {
+      setChecked(changeFilter)
+    }
+
+    function handleFilterClose(closeFilter:any) {
+      setIsComponentVisible(closeFilter)
+    }
+
     const { control, handleSubmit } = useForm({ mode: 'onTouched' });
     const onSubmit = (data: EditSearch) => { 
       setSearchText(true);
@@ -68,9 +78,11 @@ export default function Search() {
 
     return(
         <Content>
+            {console.log(checked)}
+            {console.log("CONSOLE LOG DA PAGINA EM CIMA")}
             <FilterComponent ref={ref}>
                 {isComponentVisible &&
-                    <Filter/> 
+                    <Filter filterChange={handleFilterChange} parentChange={checked} filterClose={handleFilterClose} childClose={isComponentVisible}/> 
                 }
             </FilterComponent>
             <Header>
@@ -95,7 +107,7 @@ export default function Search() {
                         control={control}
                         render={({ onChange, value }) => (
                             <Input
-                                placeholder="Pesquise aqui"
+                                placeholder={ checked === 'first' ? "Pesquise o nome do evento" : "Pesquise o nome do bairro" }
                                 onChangeText={(value) => onChange(value)}
                                 value={value}
                             />
@@ -114,11 +126,12 @@ export default function Search() {
                 {/* depois colocar o value do input quando for pesquisar */}
             <SearchText style={{color: "#32CFE3"}}>{search}</SearchText>
             </TextBox>
-            
             }
 
-            {/* componente dos eventos */}
-            <View/>
+            <Scroll>
+              {/* componente dos eventos */}
+              <View/>
+            </Scroll>
         </Content>
     );
 }
