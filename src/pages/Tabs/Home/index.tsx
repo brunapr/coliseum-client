@@ -7,6 +7,9 @@ import { InputLabel, Input } from '../../styles';
 import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox } from './styles';
 import { useState } from 'react';
 
+import EventDetails from '../../EventDetails/index';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 Home.navigationOptions = {
     header: null,
   };
@@ -22,11 +25,7 @@ interface EditData {
 
 export default function Home() {
 
-    const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });
-    const onSubmit = (data: EditData) => { console.log(data) };
-    const onError = (errors: Object) => { console.log(errors) };
-
-    const [editPassword, setEditPassword] = useState(false);
+    const [ openDetails, setOpenDetails ] = useState(false);
 
     return(
         <Content>
@@ -35,9 +34,6 @@ export default function Home() {
                     <Title>Home</Title>
                     <SubTitle>Veja os eventos perto de você</SubTitle>
                 </Header>
-
-                
-                    
                 
             </ScrollView>
         </Content>
