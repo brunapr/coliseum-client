@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, Text, Button, TextInput, ScrollView } from 'react-native';
+import { View, Text, Button, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import { InputLabel, Input } from '../../styles';
@@ -11,22 +11,7 @@ Event.navigationOptions = {
     header: null,
   };
 
-interface EditData {
-    name: string,
-    email: string,
-    phoneNumber: string,
-    password: string,
-    newPassword: string,
-    passwordConfirmation: string,
-}
-
 export default function Event() {
-
-    const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });
-    const onSubmit = (data: EditData) => { console.log(data) };
-    const onError = (errors: Object) => { console.log(errors) };
-
-    const [editPassword, setEditPassword] = useState(false);
 
     return(
         <Content>
@@ -34,10 +19,9 @@ export default function Event() {
                 <Header>
                     <Title>Eventos</Title>
                     <SubTitle>Confira agora os melhores eventos</SubTitle>
-                </Header>
 
-                
-                    
+                </Header>
+            
                 
             </ScrollView>
         </Content>

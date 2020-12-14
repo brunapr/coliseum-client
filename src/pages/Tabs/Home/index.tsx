@@ -1,39 +1,29 @@
 import React from 'react';
 
-import { View, Text, Button, TextInput, ScrollView } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
+import { View, Text, Button, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 
-import { InputLabel, Input } from '../../styles';
-import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox } from './styles';
+import { Header, Title, SubTitle, Content } from './styles';
 import { useState } from 'react';
 
 import EventDetails from '../../EventDetails/index';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
-Home.navigationOptions = {
-    header: null,
-  };
-
-interface EditData {
-    name: string,
-    email: string,
-    phoneNumber: string,
-    password: string,
-    newPassword: string,
-    passwordConfirmation: string,
-}
+import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
-
-    const [ openDetails, setOpenDetails ] = useState(false);
+    const navigation = useNavigation();
 
     return(
         <Content>
             <ScrollView>
                 <Header>
                     <Title>Home</Title>
-                    <SubTitle>Veja os eventos perto de você</SubTitle>
+                    <SubTitle>Veja os principais eventos</SubTitle>
+
                 </Header>
+                
+                <TouchableOpacity onPress={() => navigation.navigate('EventDetails')}>
+                    <Text>CLICA AQUI PRA ABRIR</Text>
+                </TouchableOpacity>
+                    
                 
             </ScrollView>
         </Content>

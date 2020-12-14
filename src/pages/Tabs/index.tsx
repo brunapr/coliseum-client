@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useState } from 'react';
 
 import { BiHome, BiSearch, BiMap, BiSticker, BiUser } from "react-icons/bi";
 
@@ -15,9 +15,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Tab = createBottomTabNavigator();
 
     export default function MyTabs() {
-        return (
- 
         
+        return (
         
           <Tab.Navigator
           tabBarOptions={{

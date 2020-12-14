@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { BiCommentDetail } from "react-icons/bi";
+import { BiCommentDetail, BiGroup } from "react-icons/bi";
+import { FaChevronCircleLeft } from 'react-icons/fa';
 
 
-import { Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress } from './styles';
+import { Container, BackIcon, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 // import { Container } from './styles';
 
 export default function EventDetails() {
+
+    const [ buttonClicked, setButtonClicked ] = useState(false);
+    const navigation = useNavigation();
+    
     return(
-        <View>
+        <Container>
             {/* foto e data */}
             <Header>
+                <BackIcon onPress={() => navigation.navigate('Home')}>
+                    <FaChevronCircleLeft size={36} color={'#32CFE3'}/>
+                </BackIcon>
                 {/* foto */}
                 <Photo/>
                 {/* data */}
@@ -36,54 +45,57 @@ export default function EventDetails() {
                             <Month>Abr</Month>
                         </DataBox>
                         {/* nome e endereço */}
-                        <View style={{width:'80%'}}>
+                        <View style={{width:'80%', height:'12vw'}}>
                             <EventTitle>Festival de Música</EventTitle>
-                            <EventAddress>Rua dos Inteligentes, 8453 - Madureira, próximo ao Shopping</EventAddress>
+                            <EventAddress>Rua dos Inteligentes, 98345 - Madureira, Próximo ao Shopping</EventAddress>
                         </View>
                     </MainData>
                     {/* caixinha de comentario */}
-                    <BiCommentDetail style={{zIndex: 1, marginRight: "5%"}} color="#fff" size={24}/>
+                    <BiCommentDetail style={{zIndex: 1, marginRight: "7.5%"}} color="#fff" size={24}/>
                 </MainInfo>
             </Header>
 
             {/* view da parte de cima dos detalhes */}
-            <View>
+            <FollowEventContainer>
                 {/* bloco dos confirmados */}
-                <View>
-                    <View/>
-                    <Text>2.011 confirmados</Text>
-                </View>
+                <PeopleFollowing>
+                    <BiGroup size={24} color={'#32CFE3'}/>
+                    <FollowingNumber>2.011 confirmados</FollowingNumber>
+                </PeopleFollowing>
 
                 {/* botão para participar do evento */}
-                <View>
-                    <Text>Participar</Text>
+                <View style={{width: '35%'}}>
+                    { !buttonClicked ?
+                    <FollowButton onPress={() => setButtonClicked(true)}><ButtonText>Participar</ButtonText></FollowButton>
+                    : <FollowButtonClicked onPress={() => setButtonClicked(false)}><ButtonTextClicked>Participando</ButtonTextClicked></FollowButtonClicked>
+                    }
                 </View>
-            </View>
+            </FollowEventContainer>
             
             {/* detalhes do evento */}
-            <View>
-                <Text>Detalhes do evento</Text>
+            <AllDetails>
+                <AllDetailsTitle>Detalhes do evento</AllDetailsTitle>
 
-                <View>
-                    <Text>Criado por</Text>
-                    <Text>Fulano Fulano</Text>
-                </View>
+                <DetailsContainer>
+                    <DetailType>Criado por</DetailType>
+                    <DetailData>Fulano Fulano</DetailData>
+                </DetailsContainer>
 
-                <View>
-                    <Text>Data e Hora</Text>
-                    <Text>21.04.2021 | 18h às 21h</Text>
-                </View>
+                <DetailsContainer>
+                    <DetailType>Data e Hora</DetailType>
+                    <DetailData>21 • 04 • 2021 | 18h às 21h</DetailData>
+                </DetailsContainer>
 
-                <View>
-                    <Text>Preço</Text>
-                    <Text>Evento Gratúito</Text>
-                </View>
+                <DetailsContainer>
+                    <DetailType>Preço</DetailType>
+                    <DetailData>Evento Gratúito</DetailData>
+                </DetailsContainer>
 
-                <View>
-                    <Text>Descrição</Text>
-                    <Text>È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile.</Text>
-                </View>
-            </View>
-        </View>
+                <DetailsContainer>
+                    <DetailType>Descrição</DetailType>
+                    <DetailData>È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile.</DetailData>
+                </DetailsContainer>
+            </AllDetails>
+        </Container>
     );
 }

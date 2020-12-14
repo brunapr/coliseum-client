@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -11,6 +11,7 @@ import EventDetails from './src/pages/EventDetails/index';
 const { Navigator, Screen } = createStackNavigator();
 
 export default function App() {
+  
   return (
     <NavigationContainer>
       <Navigator
@@ -18,10 +19,6 @@ export default function App() {
           headerShown: false
         }}
       >
-        <Screen
-          name='EventDetails'
-          component={EventDetails}
-        />
         <Screen
           name='Login'
           component={Login}
@@ -33,6 +30,10 @@ export default function App() {
         <Screen 
           name='Tabs'
           component={Tabs}
+        />
+        <Screen
+          name='EventDetails'
+          component={EventDetails}
         />
       </Navigator>
     </NavigationContainer>
