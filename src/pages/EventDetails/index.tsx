@@ -1,5 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { BiCommentDetail } from "react-icons/bi";
+
+
+import { Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress } from './styles';
 
 // import { Container } from './styles';
 
@@ -7,25 +12,39 @@ export default function EventDetails() {
     return(
         <View>
             {/* foto e data */}
-            <View>
+            <Header>
                 {/* foto */}
-                <View/>
+                <Photo/>
                 {/* data */}
-                <View>
+                <MainInfo>
+                    <LinearGradient
+                        colors={['#FF4D00', '#FF9345']}
+                        start={[0,1]}
+                        end={[1,0]}
+                        style={{
+                        position: 'absolute',
+                        width: "100%",
+                        height: "100%",
+                        borderTopRightRadius: 30,
+                        borderTopLeftRadius: 30,
+                        }}
+                    />
                     {/* caixa da data */}
-                    <View>
-                        <Text>21</Text>
-                        <Text>Abr</Text>
-                    </View>
-                    {/* nome e endereço */}
-                    <View>
-                        <Text>Festival de Música</Text>
-                        <Text>Rua dos inteligentes, 102 - VV</Text>
-                    </View>
+                    <MainData>
+                        <DataBox>
+                            <Data>21</Data>
+                            <Month>Abr</Month>
+                        </DataBox>
+                        {/* nome e endereço */}
+                        <View style={{width:'80%'}}>
+                            <EventTitle>Festival de Música</EventTitle>
+                            <EventAddress>Rua dos Inteligentes, 8453 - Madureira, próximo ao Shopping</EventAddress>
+                        </View>
+                    </MainData>
                     {/* caixinha de comentario */}
-                    <View/>
-                </View>
-            </View>
+                    <BiCommentDetail style={{zIndex: 1, marginRight: "5%"}} color="#fff" size={24}/>
+                </MainInfo>
+            </Header>
 
             {/* view da parte de cima dos detalhes */}
             <View>
@@ -51,8 +70,8 @@ export default function EventDetails() {
                 </View>
 
                 <View>
-                    <Text>Horário</Text>
-                    <Text>De 18h às 21h</Text>
+                    <Text>Data e Hora</Text>
+                    <Text>21.04.2021 | 18h às 21h</Text>
                 </View>
 
                 <View>
