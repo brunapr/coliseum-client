@@ -5,7 +5,11 @@ import { View, Text, Button, TextInput, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import { InputLabel, Input } from '../../styles';
-import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox } from './styles';
+import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox, LogoutBox } from './styles';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+
+import api from '../../../services/api';
+import { useNavigation } from '@react-navigation/native';
 
 Account.navigationOptions = {
     header: null,
@@ -20,6 +24,12 @@ interface EditData {
     passwordConfirmation: string,
 }
 
+const user_token = localStorage.getItem('token')
+
+if(user_token){
+    var Auth = 'Bearer '.concat(user_token);
+}
+
 export default function Account() {
 
     const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });
@@ -27,6 +37,16 @@ export default function Account() {
     const onError = (errors: Object) => { console.log(errors) };
 
     const [editPassword, setEditPassword] = useState(false);
+    const navigation = useNavigation();
+
+    function handleLogout() {
+        api.get('api/logout', { headers: { Authorization: Auth } }).then(response => {
+            localStorage.removeItem('token')
+            alert('Você foi deslogado com sucesso!')
+            console.log('Você foi deslogado com sucesso!')
+            navigation.navigate('Login')
+        })
+    }
 
     return(
         <Content>
@@ -185,9 +205,13 @@ export default function Account() {
                     </Form>
                     }
                     <SubmitButton> 
-                        <Button color="transparent" title='Salvar Alterações' onPress={handleSubmit(onSubmit, onError)} />
+                        <Button color="transparent" title='Salvar Alterações' onPress={handleSubmit(onSubmit, onError)} />                   
                     </SubmitButton>
+                    <LogoutBox>
+                        <Button color="transparent" title='S A I R' onPress={handleLogout}/>
+                    </LogoutBox>
                 </Form>
+
             </ScrollView>
         </Content>
     );

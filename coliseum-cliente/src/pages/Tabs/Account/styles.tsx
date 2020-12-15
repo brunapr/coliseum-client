@@ -47,3 +47,11 @@ export const SubmitButton = styled.View `
     background: rgb(6,157,177);
     margin-top: 5%;
 `;
+
+export const LogoutBox = styled.View `
+    width: 60%;
+    padding: 1%;
+    border-radius: 50px;
+    background: red;
+    margin-top: 5%;
+`;

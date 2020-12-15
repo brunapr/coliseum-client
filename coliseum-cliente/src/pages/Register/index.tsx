@@ -8,8 +8,9 @@ import { RadioButton } from 'react-native-paper';
 
 import { Container, Content, Title, InputBox, InputLabel, BackIcon } from '../styles';
 import { SubmitButton, Input } from './styles';
-import api from '../../services/api';
 import { FaChevronCircleLeft } from 'react-icons/fa';
+
+import api from '../../services/api';
 
 
 interface RegisterData {
