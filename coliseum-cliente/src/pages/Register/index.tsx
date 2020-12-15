@@ -6,10 +6,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { TextInputMask } from 'react-native-masked-text';
 import { RadioButton } from 'react-native-paper';
 
-import { Container, Content, Title, InputBox, InputLabel } from '../styles';
+import { Container, Content, Title, InputBox, InputLabel, BackIcon } from '../styles';
 import { SubmitButton, Input } from './styles';
 import api from '../../services/api';
-import { black } from 'react-native-paper/lib/typescript/src/styles/colors';
+import { FaChevronCircleLeft } from 'react-icons/fa';
+
 
 interface RegisterData {
     name: string,
@@ -24,7 +25,7 @@ export default function Register() {
     const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });
     const onSubmit = (data: RegisterData) => { 
         console.log(data)
-        api.post('api/user', data).then(response => {
+        api.post('api/register', data).then(response => {
             console.log('Cadastro feito com sucesso!')
             alert('Cadastro feito com sucesso!')
             navigation.navigate('Login')
@@ -36,6 +37,9 @@ export default function Register() {
 
     return (
         <Container>
+            <BackIcon style={{top:20}} onPress={() => navigation.navigate('Login')}>
+                <FaChevronCircleLeft size={36} color={'#32CFE3'}/>
+            </BackIcon>
             <Content>
                 <Title>Crie sua conta</Title>
                 <InputBox>

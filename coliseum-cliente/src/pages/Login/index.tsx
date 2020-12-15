@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useForm, Controller } from 'react-hook-form';
+import api from '../../services/api';
 
 import { Container, WhiteBox, Header, Title, SubTitle, Form, InputBox, Input, ButtonContainer, LoginButton, RegisterButton, LoginText, RegisterText } from './styles';
 
@@ -11,8 +12,18 @@ interface FormData {
 }
 
 export default function Login() {
+
     const { control, handleSubmit, errors } = useForm({ mode: 'onTouched' });
-    const onSubmit = (data: FormData) => { console.log(data) };
+    const onSubmit = (data: FormData) => { 
+        console.log(data)
+        api.post('api/login', data).then(response => {
+            console.log(response.data.message)
+            alert('Login feito com sucesso!')
+            localStorage.setItem('token', response.data.token)
+            navigation.navigate('Tabs')
+        }, 
+        (error => ('Login não pode ser concluído.'))) };
+
     const onError = (errors: Object) => { console.log(errors) };
     const navigation = useNavigation();
     
@@ -74,7 +85,7 @@ export default function Login() {
                         {errors.password && <Text style={{ color: 'red' }}>{errors.password.message}</Text>}
                     </InputBox>
                     <ButtonContainer>
-                        <LoginButton onPress={() => {handleSubmit(onSubmit, onError); navigation.navigate('Tabs');}}>
+                        <LoginButton onPress={handleSubmit(onSubmit, onError)}>
                             <LoginText>ENTRAR</LoginText>
                         </LoginButton>
                     </ButtonContainer>

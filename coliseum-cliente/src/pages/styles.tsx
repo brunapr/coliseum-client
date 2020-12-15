@@ -40,3 +40,10 @@ export const Input = styled.TextInput `
     background-color: #fff;
     border-radius: 100; 
 `;
+
+export const BackIcon = styled.TouchableOpacity `
+    position: absolute;
+    left: 7.5%;
+    top: 7.5%;
+    z-index: 1;
+`;
