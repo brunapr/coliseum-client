@@ -81,9 +81,9 @@ export default function Home() {
 
                     <Scroll>
 
-                    <EventOtherCard> </EventOtherCard>
-                    <EventOtherCard> </EventOtherCard>
-                    <EventOtherCard> </EventOtherCard>
+                    <EventOtherCard name= "Encontro de leitores" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventOtherCard>
+                    <EventOtherCard name= "Food Truck" date="30/05/2021" address="Rua dos bobos, 30 - Vista Alegre"> </EventOtherCard>
+                    <EventOtherCard name= "Vila Mix" date="01/06/2021" address="Rua dos bobos, 21 - Vila Valqueire"> </EventOtherCard>
 
                     </Scroll>
                  
