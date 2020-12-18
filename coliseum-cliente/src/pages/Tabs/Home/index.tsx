@@ -69,9 +69,9 @@ export default function Home() {
                     <Scroll
                         horizontal = {true} 
                     >
-                        <EventCard name= "Festival de Música" date="21/04/2021" > </EventCard>
-                        <EventCard name= "Show de Sertanejo" date ="30/05/2021"> </EventCard>
-                        <EventCard name= "Vila Mix" date ="30/05/2021"> </EventCard>
+                        <EventCard name= "Festival de Música" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventCard>
+                        <EventCard name= "Show de Sertanejo" date ="30/05/2021" address="Rua dos bobos, 30 - Vista Alegre" > </EventCard>
+                        <EventCard name= "Vila Mix" date ="01/06/2021" address="Rua dos bobos, 01 - Vila Valqueire"> </EventCard>
 
                         
                     </Scroll>
