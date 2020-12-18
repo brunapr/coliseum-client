@@ -110,4 +110,9 @@ export const RegisterText = styled.Text `
     font-size: 100%;
 `;
 
-
+export const BackIcon = styled.TouchableOpacity `
+    position: absolute;
+    left: 10%;
+    top: 7%;
+    z-index: 1;
+`;

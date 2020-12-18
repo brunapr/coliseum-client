@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BiCommentDetail, BiGroup } from "react-icons/bi";
-import { FaChevronCircleLeft } from 'react-icons/fa';
 
 
-import { Container, BackIcon, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType } from './styles';
+import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType } from './styles';
 import { useNavigation } from '@react-navigation/native';
-
-// import { Container } from './styles';
 
 export default function EventDetails() {
 
@@ -19,9 +16,6 @@ export default function EventDetails() {
         <Container>
             {/* foto e data */}
             <Header>
-                <BackIcon onPress={() => navigation.navigate('Home')}>
-                    <FaChevronCircleLeft size={36} color={'#32CFE3'}/>
-                </BackIcon>
                 {/* foto */}
                 <Photo/>
                 {/* data */}

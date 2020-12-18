@@ -24,7 +24,6 @@ interface EditData {
     newPassword: string,
     passwordConfirmation: string,
 }
-
 export default function Home() {
 
     const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });

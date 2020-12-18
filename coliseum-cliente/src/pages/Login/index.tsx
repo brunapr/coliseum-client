@@ -2,9 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useForm, Controller } from 'react-hook-form';
+import { FaChevronCircleLeft } from 'react-icons/fa';
+
 import api from '../../services/api';
 
-import { Container, WhiteBox, Header, Title, SubTitle, Form, InputBox, Input, ButtonContainer, LoginButton, RegisterButton, LoginText, RegisterText } from './styles';
+import { Container, WhiteBox, Header, Title, SubTitle, Form, InputBox, Input, ButtonContainer, LoginButton, RegisterButton, LoginText, RegisterText, BackIcon } from './styles';
 
 interface FormData {
     email: string;
@@ -20,7 +22,8 @@ export default function Login() {
             console.log(response.data.message)
             alert('Login feito com sucesso!')
             localStorage.setItem('token', response.data.token)
-            navigation.navigate('Tabs')
+            document.location.reload(true);
+            navigation.navigate('Home')
         }, 
         (error => ('Login não pode ser concluído.'))) };
 
@@ -30,6 +33,9 @@ export default function Login() {
 
     return (
         <Container>
+            <BackIcon onPress={() => {navigation.navigate('Home'); document.location.reload(true);}}>
+                <FaChevronCircleLeft size={36} color={'#fff'}/>
+            </BackIcon>
             <WhiteBox>
                 <Header>
                     <Title>Sextou?</Title>

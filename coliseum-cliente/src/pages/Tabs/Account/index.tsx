@@ -1,24 +1,22 @@
 
-import React, { useState } from 'react';
-
-import { View, Text, Button, TextInput, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
+import { View, Text, Button, ScrollView } from 'react-native';
 import { InputLabel, Input } from '../../styles';
 import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox, LogoutBox } from './styles';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+
+import { useNavigation } from '@react-navigation/native';
+import { TextInputMask } from 'react-native-masked-text';
+import { RadioButton } from 'react-native-paper';
 
 import api from '../../../services/api';
-import { useNavigation } from '@react-navigation/native';
-
-Account.navigationOptions = {
-    header: null,
-  };
 
 interface EditData {
     name: string,
     email: string,
-    phoneNumber: string,
+    birthdate: string,
+    gender: string,
     password: string,
     newPassword: string,
     passwordConfirmation: string,
@@ -30,26 +28,63 @@ if(user_token){
     var Auth = 'Bearer '.concat(user_token);
 }
 
+const img = { uri: '../../../../assets/loading.gif' };
+
 export default function Account() {
 
-    const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });
-    const onSubmit = (data: EditData) => { console.log(data) };
-    const onError = (errors: Object) => { console.log(errors) };
-
-    const [editPassword, setEditPassword] = useState(false);
     const navigation = useNavigation();
 
+    const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });
+
+    //pega todos os detalhes do usuario e o id
+    const [ userDetails, setUserDetails ] = useState<EditData>();
+    const [ user_id, setUserId ] = useState();
+
+    //envia a data do form pro back alterar
+    const onSubmit = (data: EditData) => { 
+        console.log(data)
+        api.put(`api/user/${user_id}`, data).then( response => {
+            alert('Suas alterações foram salvas!')
+            console.log(response)
+        }) 
+    };
+
+    const onError = (errors: Object) => { console.log(errors) };
+
+    //abre e fecha a aba de editar senha
+    const [editPassword, setEditPassword] = useState(false);
+
+    useEffect(() => {
+        api.get('api/getDetails', { headers: { Authorization: Auth } }).then(response => {
+            setUserDetails(response.data);
+            setUserId(response.data.id)
+        }, (error => {
+            navigation.navigate('Login')
+        }))
+    }, [user_id])
+
+    //aparecer caregamento enquanto userDetails não recebe resposta
+    if (!userDetails) {
+        return <Header style={{marginTop: '50%'}}><Title>Carregando...</Title></Header>;
+    }
+
+    //deslogar
     function handleLogout() {
         api.get('api/logout', { headers: { Authorization: Auth } }).then(response => {
             localStorage.removeItem('token')
             alert('Você foi deslogado com sucesso!')
             console.log('Você foi deslogado com sucesso!')
-            navigation.navigate('Login')
+            navigation.navigate('Home')
+            document.location.reload(true);
         })
     }
 
     return(
         <Content>
+            { userDetails === null ? 
+                <View>
+                    <Text>Carregando...</Text>
+                </View> :        
             <ScrollView>
                 <Header>
                     <Title>Minha Conta</Title>
@@ -63,6 +98,7 @@ export default function Account() {
                             control={control}
                             render={({ onBlur, onChange, value }) => (
                                 <Input
+                                    placeholder={userDetails.name}
                                     autoCompleteType='name'
                                     autoCorrect={false}
                                     textContentType='name'
@@ -72,17 +108,17 @@ export default function Account() {
                                 />
                             )}
                             name='name'
-                            defaultValue=''
+                            defaultValue={userDetails.name}
                         />
                         {errors.name && <Text style={{ color: 'red' }}>{errors.name.message}</Text>}
                     </FormBox>
-
                     <FormBox>
                         <InputLabel>E-mail</InputLabel>
                         <Controller
                             control={control}
                             render={(props) => (
                                 <Input
+                                    placeholder={userDetails.email}
                                     autoCompleteType='email'
                                     autoCorrect={false}
                                     keyboardType='email-address'
@@ -99,30 +135,57 @@ export default function Account() {
                                 },
                             }}
                             name='email'
-                            defaultValue=''
+                            defaultValue={userDetails.email}
                         />
                         {errors.email && <Text style={{ color: 'red' }}>{errors.email.message}</Text>}
                     </FormBox>
 
                     <FormBox>
-                        <InputLabel>Telefone</InputLabel>
+                        <InputLabel>Data de Nascimento</InputLabel>
                         <Controller
                             control={control}
                             render={(props) => (
-                                <Input
-                                    autoCompleteType='tel'
-                                    autoCorrect={false}
-                                    keyboardType='phone-pad'
-                                    textContentType='telephoneNumber'
+                                <TextInputMask
+                                    placeholder='DD/MM/AAAA'
+                                    type={'datetime'}
+                                    keyboardType='numeric'
                                     onBlur={props.onBlur}
-                                    onChangeText={(value) => props.onChange(value)}
+                                    options={{
+                                        format: 'DD/MM/YYYY'
+                                    }}
                                     value={props.value}
+                                    onChangeText={(value:any) => props.onChange(value)}
+                                    style={{
+                                        width: '100%',
+                                        padding: '3%', paddingLeft: '5%',
+                                        backgroundColor: '#fff',
+                                        borderRadius: 100,
+                                    }}
                                 />
                             )}
-                            name='phoneNumber'
-                            defaultValue=''
+                            name='birthdate'
+                            defaultValue={userDetails.birthdate}
                         />
-                        {errors.phoneNumber && <Text style={{ color: 'red' }}>{errors.phoneNumber.message}</Text>}
+                        {errors.birthdate && <Text style={{ color: 'red' }}>{errors.birthdate.message}</Text>}
+                    </FormBox>
+
+                    <FormBox>
+                        <InputLabel>Gênero</InputLabel>
+                        <Controller
+                            control={control}
+                            render={(props) => (
+                                <View>
+                                    <RadioButton.Group onValueChange={(value:any) => props.onChange(value)} value={props.value}>
+                                        <RadioButton.Item color='#32CFE3' label="Feminino" value="feminino" />
+                                        <RadioButton.Item color='#32CFE3' label="Masculino" value="masculino" />
+                                        <RadioButton.Item color='#32CFE3' label="Outro" value="outro" />
+                                    </RadioButton.Group>
+                                </View>
+                            )}
+                            name='gender'
+                            defaultValue={userDetails.gender}
+                        />
+                        {errors.gender && <Text style={{ color: 'red' }}>{errors.gender.message}</Text>}
                     </FormBox>
 
                     <FormBox>
@@ -143,7 +206,7 @@ export default function Account() {
                                 />
                             )}
                             name='password'
-                            defaultValue=''
+                            defaultValue={userDetails.password}
                         />
                         {errors.password && <Text style={{ color: 'red' }}>{errors.password.message}</Text>}
                     </FormBox>
@@ -213,6 +276,7 @@ export default function Account() {
                 </Form>
 
             </ScrollView>
+            }
         </Content>
     );
 }

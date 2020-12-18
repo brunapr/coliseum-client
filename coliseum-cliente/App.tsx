@@ -19,6 +19,10 @@ export default function App() {
           headerShown: false
         }}
       >
+        <Screen 
+          name='Tabs'
+          component={Tabs}
+        />
         <Screen
           name='Login'
           component={Login}
@@ -26,10 +30,6 @@ export default function App() {
         <Screen
           name='Register'
           component={Register}
-        />
-        <Screen 
-          name='Tabs'
-          component={Tabs}
         />
         <Screen
           name='EventDetails'

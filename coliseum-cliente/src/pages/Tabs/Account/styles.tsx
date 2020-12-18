@@ -2,8 +2,9 @@ import styled from 'styled-components/native';
 
 export const Content = styled.View `
     width: 100%;
-    height: 100vh;
-    padding: 8%;
+    height: 100%;
+    padding-left: 8%;
+    padding-right: 8%;
 `;
 
 export const Header = styled.View `
@@ -54,4 +55,5 @@ export const LogoutBox = styled.View `
     border-radius: 50px;
     background: red;
     margin-top: 5%;
+    margin-bottom: 5%;
 `;
