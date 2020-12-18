@@ -4,13 +4,12 @@ import React from 'react';
 import { View, Text, Button, TextInput, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
-import { InputLabel, Input } from '../../styles';
 import { Header, Body, p, Scroll, DivTitle, PopularCard, OtherCard, Title, SubTitle, Content, DivImgPopular, DivImgOther  } from './styles';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { InputBox } from '../../Login/styles';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { BiSearch } from 'react-icons/bi';
+
+import { useNavigation } from '@react-navigation/native';
 
 Home.navigationOptions = {
     header: null,
@@ -26,11 +25,11 @@ interface EditData {
 }
 export default function Home() {
 
-    const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });
-    const onSubmit = (data: EditData) => { console.log(data) };
-    const onError = (errors: Object) => { console.log(errors) };
+    const navigation = useNavigation();
 
-    const [editPassword, setEditPassword] = useState(false);
+    function goToEvent() {
+        navigation.navigate('EventDetails')
+    }
 
     return(
         <Content>
@@ -69,9 +68,9 @@ export default function Home() {
                         <PopularCard>
 
                             <DivImgPopular>
-              
+                            <Button title="CLICA AQUI" onPress={() => navigation.navigate('EventDetails')}/>
                             </DivImgPopular>
-           
+
                         </PopularCard>
 
                         <PopularCard>

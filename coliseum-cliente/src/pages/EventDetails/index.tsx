@@ -1,19 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { BiCommentDetail, BiGroup } from "react-icons/bi";
+import { FaChevronCircleLeft } from 'react-icons/fa';
 
-
-import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType } from './styles';
+import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType, BackIcon } from './styles';
 import { useNavigation } from '@react-navigation/native';
+
+import api from '../../services/api';
+
+interface EventData {
+    name: string,
+    description: string,
+    price: number,
+    date: string,
+    starts_at: string,
+    city: string,
+    neighborhood: string,
+    street: string,
+    number: string,
+}
 
 export default function EventDetails() {
 
     const [ buttonClicked, setButtonClicked ] = useState(false);
     const navigation = useNavigation();
+
+    const [ eventDetails, setEventDetails ] = useState<EventData>();
+    const [ event_id, setEventId ] = useState(3); //preciso depois passar o id pela home, precisa ser recebido antes de mandar pra useeffect
+
+    useEffect(() => {
+        api.get(`api/event/${event_id}`).then( response => {
+            setEventDetails(response.data)
+        })
+    }, [event_id])
+
+    if (!eventDetails) {
+        return <Container style={{marginTop: '50%'}}><Text style={{color: '#FF4D00'}}>Carregando...</Text></Container>;
+    }
     
     return(
         <Container>
+            <BackIcon onPress={() => {navigation.navigate('Home'); document.location.reload(true);}}>
+                <FaChevronCircleLeft size={36} color={'#32CFE3'}/>
+            </BackIcon>
             {/* foto e data */}
             <Header>
                 {/* foto */}
@@ -35,13 +65,14 @@ export default function EventDetails() {
                     {/* caixa da data */}
                     <MainData>
                         <DataBox>
+                            {/* integrar essa parte */}
                             <Data>21</Data>
                             <Month>Abr</Month>
                         </DataBox>
                         {/* nome e endereço */}
                         <View style={{width:'80%', height:'12vw'}}>
-                            <EventTitle>Festival de Música</EventTitle>
-                            <EventAddress>Rua dos Inteligentes, 98345 - Madureira, Próximo ao Shopping</EventAddress>
+                            <EventTitle>{eventDetails.name}</EventTitle>
+                            <EventAddress>{eventDetails.street} {eventDetails.number}, {eventDetails.neighborhood} - {eventDetails.city}</EventAddress>
                         </View>
                     </MainData>
                     {/* caixinha de comentario */}
@@ -71,23 +102,24 @@ export default function EventDetails() {
                 <AllDetailsTitle>Detalhes do evento</AllDetailsTitle>
 
                 <DetailsContainer>
+                    {/* integrar essa parte depois */}
                     <DetailType>Criado por</DetailType>
                     <DetailData>Fulano Fulano</DetailData>
                 </DetailsContainer>
 
                 <DetailsContainer>
                     <DetailType>Data e Hora</DetailType>
-                    <DetailData>21 • 04 • 2021 | 18h às 21h</DetailData>
+                    <DetailData>{eventDetails.date} | {eventDetails.starts_at}</DetailData>
                 </DetailsContainer>
 
                 <DetailsContainer>
                     <DetailType>Preço</DetailType>
-                    <DetailData>Evento Gratúito</DetailData>
+                    <DetailData>R${eventDetails.price}</DetailData>
                 </DetailsContainer>
 
                 <DetailsContainer>
                     <DetailType>Descrição</DetailType>
-                    <DetailData>È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile.</DetailData>
+                    <DetailData>{eventDetails.description}</DetailData>
                 </DetailsContainer>
             </AllDetails>
         </Container>
