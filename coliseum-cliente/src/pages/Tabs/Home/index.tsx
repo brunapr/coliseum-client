@@ -4,16 +4,20 @@ import React from 'react';
 import { View, Text, Button, TextInput, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
-import { Header, Body, p, Scroll, DivTitle, PopularCard, OtherCard, Title, SubTitle, Content, DivImgPopular, DivImgOther  } from './styles';
+import { Header, Body, p, Scroll, DivTitle, Title, SubTitle, Content  } from './styles';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 import { useNavigation } from '@react-navigation/native';
 
+import EventCard from '../../../components/EventCard/index';
+import EventOtherCard from '../../../components/EventOtherCard/index';
+
 Home.navigationOptions = {
     header: null,
   };
+
 
 interface EditData {
     name: string,
@@ -65,70 +69,26 @@ export default function Home() {
                     <Scroll
                         horizontal = {true} 
                     >
-                        <PopularCard>
+                        <EventCard name= "Festival de Música" date="21/04/2021" > </EventCard>
+                        <EventCard name= "Show de Sertanejo" date ="30/05/2021"> </EventCard>
+                        <EventCard name= "Vila Mix" date ="30/05/2021"> </EventCard>
 
-                            <DivImgPopular>
-                            <Button title="CLICA AQUI" onPress={() => navigation.navigate('EventDetails')}/>
-                            </DivImgPopular>
-
-                        </PopularCard>
-
-                        <PopularCard>
-
-                            <DivImgPopular>
-                
-                            </DivImgPopular>
-                       
-
-                        </PopularCard>
-
-                        <PopularCard>
-                            
-                            <DivImgPopular>
-                
-                            </DivImgPopular>
-                            
-                        </PopularCard>
+                        
                     </Scroll>
                     
 
                     <SubTitle>Outros eventos</SubTitle>
 
                     <Scroll>
-                        < OtherCard>
-                            <DivImgOther>
 
-                            </DivImgOther>
-                        
-                        </OtherCard>
-    
-                        <OtherCard>
-                            <DivImgOther>
-
-                            </DivImgOther>
-                            
-                        </OtherCard>
-
-                        <OtherCard>
-                            <DivImgOther>
-
-                            </DivImgOther>
-                            
-                        </OtherCard>
+                    <EventOtherCard> </EventOtherCard>
+                    <EventOtherCard> </EventOtherCard>
+                    <EventOtherCard> </EventOtherCard>
 
                     </Scroll>
-
-                    
-
-                    
-                    
-                   
+                 
                 </Body>
-              
-               
-
-                
-                    
+         
                 
             </ScrollView>
         </Content>
