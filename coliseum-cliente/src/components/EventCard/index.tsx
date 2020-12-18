@@ -8,11 +8,11 @@ export default function EventCard(props:any) {
 
     return (
 
-        <Card>
+        <Card >
 
-            <DivImage>
+            <DivImage >
             
-                <Button title="CLICA AQUI" onPress={()=>null}/>
+        
             </DivImage>
             <DivEventDetails>
                 <DivEventInformation>

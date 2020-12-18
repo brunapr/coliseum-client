@@ -25,14 +25,15 @@ export const Body = styled.View `
 `;
 
 export const DivTitle = styled.View `
-    width: 68vw;
+    width: 100vw;
     height: 20vh;
+
     display: flex;
-    margin-top: 0%;
-    margin-bottom: 0%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    padding:10%;
    
 `;
 
