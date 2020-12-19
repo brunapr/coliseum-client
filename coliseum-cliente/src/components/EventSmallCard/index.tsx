@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native';
 
 import { Card, DivImage, DivEventAddress, DivEventDate, DivEventName, DivEventDetails, EventAddress, EventDate, EventName} from './styles';
 
-export default function EventOtherCard(props:any) {
+export default function EventSmallCard(props:any) {
 
     return (
         < Card>

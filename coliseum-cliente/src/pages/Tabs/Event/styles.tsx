@@ -3,17 +3,31 @@ import styled from 'styled-components/native';
 export const Content = styled.View `
     width: 100%;
     height: 100vh;
-    padding: 8%;
+  
 `;
 
 export const Header = styled.View `
     width: 100%;
-    height: auto;
+    height: 15vh;
+
     display: flex;
-    margin-top: 8%;
-    margin-bottom: 10%;
-    flex-direction: column;
+    flex-direction: row;
+    
 `;
+
+export const DivButtons = styled.View `
+    width: 100%;
+    height: 15vh;
+
+    display: flex;
+    flex-direction: row;
+
+    border: 2px solid blue;
+
+    color: black;
+    
+`;
+
 
 export const Title = styled.Text `
     color: #FF4D00;
@@ -28,22 +42,3 @@ export const SubTitle = styled.Text `
     width: 50%;
 `;
 
-export const Form = styled.View `
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-export const FormBox = styled.View `
-    width: 100%;
-    margin-bottom: 5%;
-`;
-
-export const SubmitButton = styled.View `
-    width: 60%;
-    padding: 1%;
-    border-radius: 50px;
-    background: rgb(6,157,177);
-    margin-top: 5%;
-`;

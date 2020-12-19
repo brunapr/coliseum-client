@@ -12,7 +12,7 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 import EventCard from '../../../components/EventCard/index';
-import EventOtherCard from '../../../components/EventOtherCard/index';
+import EventSmallCard from '../../../components/EventSmallCard/index';
 
 Home.navigationOptions = {
     header: null,
@@ -81,9 +81,9 @@ export default function Home() {
 
                     <Scroll>
 
-                    <EventOtherCard name= "Encontro de leitores" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventOtherCard>
-                    <EventOtherCard name= "Food Truck" date="30/05/2021" address="Rua dos bobos, 30 - Vista Alegre"> </EventOtherCard>
-                    <EventOtherCard name= "Vila Mix" date="01/06/2021" address="Rua dos bobos, 21 - Vila Valqueire"> </EventOtherCard>
+                    <EventSmallCard name= "Encontro de leitores" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventSmallCard>
+                    <EventSmallCard name= "Food Truck" date="30/05/2021" address="Rua dos bobos, 30 - Vista Alegre"> </EventSmallCard>
+                    <EventSmallCard name= "Vila Mix" date="01/06/2021" address="Rua dos bobos, 21 - Vila Valqueire"> </EventSmallCard>
 
                     </Scroll>
                  

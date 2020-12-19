@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { View, Text, Button, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
+import { View, Text, Button, ScrollView, Alert} from 'react-native';
 
-import { InputLabel, Input } from '../../styles';
-import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox } from './styles';
+import { Header, Title, SubTitle, Content, DivButtons} from './styles';
 import { useState } from 'react';
+
 
 Event.navigationOptions = {
     header: null,
@@ -17,8 +16,21 @@ export default function Event() {
         <Content>
             <ScrollView>
                 <Header>
-                    <Title>Eventos</Title>
-                    <SubTitle>Confira agora os melhores eventos</SubTitle>
+                    <DivButtons> 
+
+                        <Button
+                            title="Eventos Atuais"
+                            color="#f2f2f2"
+                            onPress={() => Alert.alert('Simple Button pressed')}
+                        />
+
+                        <Button
+                            title="Eventos Anteriores"
+                            color="#f2f2f2"
+                            onPress={() => Alert.alert('Simple Button pressed')}
+                        />
+                    </DivButtons>
+                    
 
                 </Header>
             
