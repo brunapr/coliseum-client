@@ -176,6 +176,17 @@ export const DetailType = styled.Text `
 `;
 
 export const DetailData = styled.Text `
+    width: auto;
     color: #5A5A5A;
     font-size: 95%;
+`;
+
+export const PromoterContainer = styled.View `
+    display: flex;
+    flex-direction: row;
+`;
+
+export const InfoButton = styled.TouchableOpacity `
+    width: auto;
+    height: auto;
 `;

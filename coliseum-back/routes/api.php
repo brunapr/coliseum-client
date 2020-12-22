@@ -28,6 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('events', [EventController::class, 'index']);
 Route::get('event/{id}', [EventController::class, 'show']);
 Route::put('event/{id}', [EventController::class, 'update']);
+Route::post('search', [EventController::class, 'searchEvent']);
 
 //user Routes
 Route::post('user', [UserController::class, 'store']);
@@ -53,4 +54,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('logout', [PassportController::class, 'logout']);
     //admin routes
     Route::delete('event/{id}', [EventController::class, 'destroy'])->middleware(Admin::class);
+    //password route
+    Route::put('password', [userController::class, 'changePassword']);
 });

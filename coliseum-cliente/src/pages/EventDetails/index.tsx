@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
+import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+
 import { LinearGradient } from 'expo-linear-gradient';
 import { BiCommentDetail, BiGroup } from "react-icons/bi";
-import { FaChevronCircleLeft } from 'react-icons/fa';
+import { FaChevronCircleLeft, FaInfoCircle } from 'react-icons/fa';
 
-import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType, BackIcon } from './styles';
+import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType, BackIcon, PromoterContainer, InfoButton } from './styles';
 import { useNavigation } from '@react-navigation/native';
+
+import Phone from '../../components/PromoterPhone/index';
 
 import api from '../../services/api';
 
@@ -19,24 +23,36 @@ interface EventData {
     neighborhood: string,
     street: string,
     number: string,
+    participants: number,
 }
 
 export default function EventDetails() {
 
     const [ buttonClicked, setButtonClicked ] = useState(false);
-    const navigation = useNavigation();
+    const [ infoClicked, setInfoClicked ] = useState(false);
+
+    const [ event_id, setEventId ] = useState(1); //preciso depois passar o id pela home, precisa ser recebido antes de mandar pra useeffect
+    const [ user_id , setUserId ] = useState(1); //seta o userId uma vez que o phone do promoter nao vem na resposta
 
     const [ eventDetails, setEventDetails ] = useState<EventData>();
-    const [ event_id, setEventId ] = useState(3); //preciso depois passar o id pela home, precisa ser recebido antes de mandar pra useeffect
+    const [ promoterPhone, setPromoterPhone ] = useState();
+    const [ promoterName, setPromoterName ] = useState();
+
+    const navigation = useNavigation();
 
     useEffect(() => {
         api.get(`api/event/${event_id}`).then( response => {
             setEventDetails(response.data)
+            setPromoterName(response.data.user.name)
+        })
+
+        api.get(`api/user/${user_id}`).then( response => {
+            setPromoterPhone(response.data.promoter.phone)
         })
     }, [event_id])
 
     if (!eventDetails) {
-        return <Container style={{marginTop: '50%'}}><Text style={{color: '#FF4D00'}}>Carregando...</Text></Container>;
+        return <Container style={{marginTop: '50%'}}><Text style={{color: '#FF4D00', fontSize: 24}}>Carregando...</Text></Container>;
     }
     
     return(
@@ -85,7 +101,7 @@ export default function EventDetails() {
                 {/* bloco dos confirmados */}
                 <PeopleFollowing>
                     <BiGroup size={24} color={'#32CFE3'}/>
-                    <FollowingNumber>2.011 confirmados</FollowingNumber>
+                    <FollowingNumber>{eventDetails.participants} confirmados</FollowingNumber>
                 </PeopleFollowing>
 
                 {/* botão para participar do evento */}
@@ -104,7 +120,13 @@ export default function EventDetails() {
                 <DetailsContainer>
                     {/* integrar essa parte depois */}
                     <DetailType>Criado por</DetailType>
-                    <DetailData>Fulano Fulano</DetailData>
+                    <PromoterContainer>
+                        <DetailData>{promoterName} </DetailData> 
+                        <InfoButton onPress={() => setInfoClicked(!infoClicked)}>
+                            <FaInfoCircle size={20}/>
+                        </InfoButton>
+                        { infoClicked && <Phone phone={promoterPhone}/> }
+                    </PromoterContainer>
                 </DetailsContainer>
 
                 <DetailsContainer>
