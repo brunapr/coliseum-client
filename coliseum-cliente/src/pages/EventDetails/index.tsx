@@ -31,6 +31,8 @@ export default function EventDetails() {
     const [ buttonClicked, setButtonClicked ] = useState(false);
     const [ infoClicked, setInfoClicked ] = useState(false);
 
+    // nao vai precisar desses dois de baixo depois pq os dois ids vao vir direto 
+    // entao soh teria que chamar como props.event_id e props.user_id
     const [ event_id, setEventId ] = useState(1); //preciso depois passar o id pela home, precisa ser recebido antes de mandar pra useeffect
     const [ user_id , setUserId ] = useState(1); //seta o userId uma vez que o phone do promoter nao vem na resposta
 
