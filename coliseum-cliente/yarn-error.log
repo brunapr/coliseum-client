@@ -1,20 +1,25 @@
 Arguments: 
-  D:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-router-dom
+  D:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
 
 PATH: 
-  C:\Users\Seth\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\local\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\Users\Seth\bin;C:\Python38\Scripts;C:\Python38;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\Program Files\Git\cmd;D:\Users\Seth\Downloads\php-7.4.8-Win32-vc15-x64;C:\ProgramData\ComposerSetup\bin;C:\ProgramData\chocolatey\bin;D:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;D:\xampp\php;C:\Users\Seth\AppData\Local\Microsoft\WindowsApps;C:\Users\Seth\AppData\Roaming\Composer\vendor\bin;D:\Users\Seth\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Seth\AppData\Roaming\npm;C:\Users\Seth\AppData\Local\Yarn\bin;D:\Program Files\Git\usr\bin\vendor_perl;D:\Program Files\Git\usr\bin\core_perl;C;C:\Users\Seth\AppData\Local\Yarn\bin
+  C:\Users\Seth\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\local\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\Users\Seth\bin;C:\Python39\Scripts;C:\Python39;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;D:\xampp\php;C:\ProgramData\ComposerSetup\bin;D:\Program Files\Git\cmd;D:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\Yarn\bin;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0;%SYSTEMROOT%\System32\OpenSSH;C:\Users\Seth\AppData\Local\Microsoft\WindowsApps;C:\Users\Seth\AppData\Roaming\Composer\vendor\bin;D:\Users\Seth\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Seth\AppData\Roaming\npm;C:\Users\Seth\AppData\Local\Yarn\bin;D:\Program Files\Git\usr\bin\vendor_perl;D:\Program Files\Git\usr\bin\core_perl;C;D:\Users\Seth\AppData\Local\Yarn\bin
 
 Yarn version: 
   1.22.5
 
 Node version: 
-  12.19.0
+  14.15.3
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\Seth\Desktop\dev\projetos\coliseum\coliseum-cliente\node_modules\@babel\helper-compilation-targets\node_modules\@babel\core\node_modules\.bin'
+  SyntaxError: C:\Users\Seth\AppData\Local\Yarn\Cache\v6\npm-semver-6.3.0-ee0a64c8af5e8ceea67687b133761e1becbd1d3d-integrity\node_modules\semver\.yarn-metadata.json: Unexpected token � in JSON at position 0
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:310:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:321:13
 
 npm manifest: 
   {

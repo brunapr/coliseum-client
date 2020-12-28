@@ -73,6 +73,22 @@ class Event extends Model
       return $this;
     }
 
+  
+    public function search(String $search, int $tolerance) {
+      // first we are going to search it via levenshtein
+      if (levenshtein($search, strtoupper($this->neighborhood))<=$tolerance || levenshtein($search, strtoupper($this->street))<=$tolerance || levenshtein($search, strtoupper($this->street).' '.$this->number)<=$tolerance || levenshtein($search, strtoupper($this->name))<=$tolerance )  {
+        return true;
+      } 
+      // now we check for the substring in the haystack
+      if (stripos(strtoupper($this->neighborhood), $search) !== false || stripos(strtoupper($this->street), $search) !== false || stripos(strtoupper($this->street).' '.$this->number, $search) !== false || stripos(strtoupper($this->name), $search) !== false) {
+        return true;
+      } 
+      //no similarities found
+      return false;
+    }
+  
+    
+
     public function user() {
       return $this->belongsTo(User::class);
     }

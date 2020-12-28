@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { TouchableHighlight, View, ScrollView } from 'react-native';
+import { TouchableHighlight, View, Text } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import { Input } from '../../styles';
@@ -9,13 +9,18 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { BiSlider, BiSearch } from 'react-icons/bi';
 
 import Filter from '../../../components/Filter/index';
-
-Search.navigationOptions = {
-    header: null,
-  };
+import api from '../../../services/api';
 
 interface EditSearch {
     text: string
+}
+
+interface Events {
+    event: {
+      id: number,
+      name: string,
+      neighborhood: string,
+    }
 }
 
 function useComponentVisible(initialIsVisible: any) {
@@ -48,6 +53,8 @@ function useComponentVisible(initialIsVisible: any) {
     return { ref, isComponentVisible, setIsComponentVisible };
 }
 
+
+
 export default function Search() {
 
     // Faz o componente de filtro sumir quando clicado fora
@@ -57,7 +64,10 @@ export default function Search() {
     const [ searchText, setSearchText ] = useState(false);
 
     // Valor do input --> o que será mandado pro back <--
-    const [ search, setSearch ] = useState('');
+    const [ hasSearch, setSearch ] = useState('');
+
+    // A resposta da pesquisa com os arrays
+    const [ searchResults, setSearchResults ] = useState<Events[]>();
 
     // O que será passado para o filtro
     const [checked, setChecked] = useState('first');
@@ -73,13 +83,19 @@ export default function Search() {
     const onSubmit = (data: EditSearch) => { 
       setSearchText(true);
       setSearch(data.text);
-      console.log(data) 
+      const search = data.text;
+
+      api.post('api/search', { search: search }).then( response => {
+        console.log(response)
+        setSearchResults(response.data)
+      }, error => {
+        alert("Não foram encontrados eventos que satisfazem o critério de busca.")
+      })
+
     };
 
     return(
         <Content>
-            {console.log(checked)}
-            {console.log("CONSOLE LOG DA PAGINA EM CIMA")}
             <FilterComponent ref={ref}>
                 {isComponentVisible &&
                     <Filter filterChange={handleFilterChange} parentChange={checked} filterClose={handleFilterClose} childClose={isComponentVisible}/> 
@@ -124,13 +140,20 @@ export default function Search() {
             <TextBox>
                 <SearchText>Você pesquisou por... </SearchText> 
                 {/* depois colocar o value do input quando for pesquisar */}
-            <SearchText style={{color: "#32CFE3"}}>{search}</SearchText>
+            <SearchText style={{color: "#32CFE3"}}>{hasSearch}</SearchText>
             </TextBox>
             }
 
             <Scroll>
               {/* componente dos eventos */}
-              <View/>
+              {searchResults?.map(searchResult => {
+                return(
+                  <View key={searchResult.event.id}>
+                    <Text>{searchResult.event.name}</Text>
+                    <Text>{searchResult.event.neighborhood}</Text>
+                  </View>
+                )
+              })}
             </Scroll>
         </Content>
     );

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class UserController extends Controller
 {
@@ -44,6 +46,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
+        if($user->role == "promoter"){
+            $user->load('promoter');
+        }
 
         return response()->json($user, 200);
     }
@@ -75,5 +80,24 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json('usuario deletado', 200);
+    }
+
+    /**
+     * Change the user password
+     * 
+     * @param Request $request
+     * @return User $user
+     */
+    public function changePassword(Request $request)
+    {
+        $user = Auth::user();
+
+        if (Hash::check($request->old_password, $user->password)){
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+        } else {
+            return response()->json('wrong password', 200);
+        }
+        return response()->json($user, 200); 
     }
 }

@@ -78,4 +78,27 @@ class EventController extends Controller
 
         return response()->json('evento deletado', 200);
     }
+
+    /**
+     * Search for an event based on a query
+     * 
+     * @param Request $request
+     * @return Event 
+     */
+    public function searchEvent(Request $request) {
+        $events = Event::all();
+        $results = [];
+        $tolerance = (0.3)*strlen($request->search);
+        foreach($events as $event){
+            if($event->search(strtoupper($request->search), (int)$tolerance)){
+                array_push($results, ['event' => $event]); 
+            }
+        }
+
+        if ($results === []){
+            return response()->json('no events match the search terms', 404);
+        }
+            return response()->json($results,200);
+
+    }
 }
