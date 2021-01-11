@@ -1,5 +1,6 @@
 import React from 'react';
 
+import api from '../../../services/api';
 
 import { View, Text, Button, TextInput, ScrollView } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
@@ -13,27 +14,40 @@ import { useNavigation } from '@react-navigation/native';
 
 import EventCard from '../../../components/EventCard/index';
 import EventSmallCard from '../../../components/EventSmallCard/index';
+import { useEffect } from 'react';
 
 Home.navigationOptions = {
     header: null,
   };
 
-
-interface EditData {
-    name: string,
-    email: string,
-    phoneNumber: string,
-    password: string,
-    newPassword: string,
-    passwordConfirmation: string,
+interface Event {
+    id: number;
+    name: string;
+    city:string;
+    date:string;
+ 
 }
-export default function Home() {
 
-    const navigation = useNavigation();
+export default function Home() {
 
     function goToEvent() {
         navigation.navigate('EventDetails')
     }
+
+    const [events, setEvents] = useState<Event[]>([]);
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        api.get('api/events').then(response => {
+            setEvents(response.data);
+        })
+    });
+
+    function handleNavigateToEventDetails(id: number) {
+        navigation.navigate('EventDetails', { id });
+    }
+
+
 
     return(
         <Content>
@@ -69,9 +83,15 @@ export default function Home() {
                     <Scroll
                         horizontal = {true} 
                     >
-                        <EventCard name= "Festival de Música" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventCard>
-                        <EventCard name= "Show de Sertanejo" date ="30/05/2021" address="Rua dos bobos, 30 - Vista Alegre" > </EventCard>
-                        <EventCard name= "Vila Mix" date ="01/06/2021" address="Rua dos bobos, 01 - Vila Valqueire"> </EventCard>
+
+                        {
+                            events.map(event => {
+                                return (
+                                    <EventCard key={event.id} name= {event.name} date={event.date} address={event.city} > </EventCard>
+                                   
+                                );
+                            })
+                        }
 
                         
                     </Scroll>
@@ -81,9 +101,14 @@ export default function Home() {
 
                     <Scroll>
 
-                    <EventSmallCard name= "Encontro de leitores" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventSmallCard>
-                    <EventSmallCard name= "Food Truck" date="30/05/2021" address="Rua dos bobos, 30 - Vista Alegre"> </EventSmallCard>
-                    <EventSmallCard name= "Vila Mix" date="01/06/2021" address="Rua dos bobos, 21 - Vila Valqueire"> </EventSmallCard>
+                    {
+                    events.map(event => {
+                        return (
+                            <EventSmallCard name= "Encontro de leitores" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventSmallCard>
+                        );
+                    })
+                    }  
+
 
                     </Scroll>
                  

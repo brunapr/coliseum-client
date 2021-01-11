@@ -16,7 +16,7 @@ interface Event {
     longitude: number;
 }
 
-export default function OrphanagesMap() {
+export default function EventsMap() {
     const [events, setEvents] = useState<Event[]>([]);
     const navigation = useNavigation();
 
