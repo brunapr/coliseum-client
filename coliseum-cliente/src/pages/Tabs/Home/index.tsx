@@ -104,7 +104,7 @@ export default function Home() {
                     {
                     events.map(event => {
                         return (
-                            <EventSmallCard name= "Encontro de leitores" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventSmallCard>
+                            <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city}> </EventSmallCard>
                         );
                     })
                     }  
