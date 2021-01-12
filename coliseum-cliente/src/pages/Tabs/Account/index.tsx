@@ -10,7 +10,8 @@ import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text';
 import { RadioButton } from 'react-native-paper';
 
-import api, { user_token } from '../../../services/api';
+import api from '../../../services/api';
+import { user_token } from '../../../services/auth';
 
 interface EditData {
     name: string,
