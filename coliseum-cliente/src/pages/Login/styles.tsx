@@ -5,10 +5,9 @@ export const Container = styled.View `
     width: 100vw;
     height: 100vh;
 
-    background: #000;
-    background-image: url(${img});
-    background-size: cover;
-    background-repeat: no-repeat;
+    // background-image: url(${img});
+    // background-size: cover;
+    // background-repeat: no-repeat;
 
     display: flex;
     justify-content: center;
