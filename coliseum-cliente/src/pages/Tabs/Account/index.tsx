@@ -10,7 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text';
 import { RadioButton } from 'react-native-paper';
 
-import api from '../../../services/api';
+import api, { user_token } from '../../../services/api';
 
 interface EditData {
     name: string,
@@ -21,14 +21,6 @@ interface EditData {
     newPassword: string,
     passwordConfirmation: string,
 }
-
-const user_token = localStorage.getItem('token')
-
-if(user_token){
-    var Auth = 'Bearer '.concat(user_token);
-}
-
-const img = { uri: '../../../../assets/loading.gif' };
 
 export default function Account() {
 
@@ -55,7 +47,7 @@ export default function Account() {
     const [editPassword, setEditPassword] = useState(false);
 
     useEffect(() => {
-        api.get('api/getDetails', { headers: { Authorization: Auth } }).then(response => {
+        api.get('api/getDetails', { headers: { Authorization: user_token } }).then(response => {
             setUserDetails(response.data);
             setUserId(response.data.id)
         }, (error => {

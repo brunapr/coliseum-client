@@ -37,7 +37,8 @@
     "react-native-screens": "~2.10.1",
     "react-native-text-input-mask": "^2.0.0",
     "react-native-web": "~0.13.12",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
