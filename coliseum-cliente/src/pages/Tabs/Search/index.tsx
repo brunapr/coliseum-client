@@ -1,25 +1,35 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 import { TouchableHighlight, View, Text } from 'react-native';
+
 import { useForm, Controller } from 'react-hook-form';
 
 import { Input } from '../../styles';
+
 import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent, Scroll } from './styles';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import { BiSlider, BiSearch } from 'react-icons/bi';
 
+import EventSmallCard from '../../../components/EventSmallCard/index';
+
 import Filter from '../../../components/Filter/index';
+
 import api from '../../../services/api';
+import { event } from 'react-native-reanimated';
+;
 
 interface EditSearch {
     text: string
 }
 
-interface Events {
+interface Event {
     event: {
       id: number,
       name: string,
-      neighborhood: string,
+      city: string,
+      date: string,
+
     }
 }
 
@@ -42,6 +52,8 @@ function useComponentVisible(initialIsVisible: any) {
     };
   
     useEffect(() => {
+
+
       document.addEventListener("keydown", handleHideDropdown, true);
       document.addEventListener("click", handleClickOutside, true);
       return () => {
@@ -57,6 +69,14 @@ function useComponentVisible(initialIsVisible: any) {
 
 export default function Search() {
 
+  const [events, setEvents] = useState<Event[]>([]);
+
+      useEffect(() => {
+        api.get('api/events').then(response => {
+            setEvents(response.data);
+        })
+    });
+
     // Faz o componente de filtro sumir quando clicado fora
     const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
 
@@ -67,7 +87,7 @@ export default function Search() {
     const [ hasSearch, setSearch ] = useState('');
 
     // A resposta da pesquisa com os arrays
-    const [ searchResults, setSearchResults ] = useState<Events[]>();
+    const [ searchResults, setSearchResults ] = useState<Event[]>();
 
     // O que será passado para o filtro
     const [checked, setChecked] = useState('first');
@@ -148,10 +168,9 @@ export default function Search() {
               {/* componente dos eventos */}
               {searchResults?.map(searchResult => {
                 return(
-                  <View key={searchResult.event.id}>
-                    <Text>{searchResult.event.name}</Text>
-                    <Text>{searchResult.event.neighborhood}</Text>
-                  </View>
+                  
+                            <EventSmallCard key={searchResult.event.id} name= {searchResult.event.name} date={searchResult.event.date} address={searchResult.event.city}> </EventSmallCard>
+                       
                 )
               })}
             </Scroll>

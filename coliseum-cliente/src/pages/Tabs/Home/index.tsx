@@ -2,13 +2,13 @@ import React from 'react';
 
 import api from '../../../services/api';
 
-import { View, Text, Button, TextInput, ScrollView } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
+import { ScrollView } from 'react-native';
+
 
 import { Header, Body, p, Scroll, DivTitle, Title, SubTitle, Content  } from './styles';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+
 
 import { useNavigation } from '@react-navigation/native';
 
