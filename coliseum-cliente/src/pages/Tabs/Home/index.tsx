@@ -2,18 +2,17 @@ import React, { useEffect } from 'react';
 
 import api from '../../../services/api';
 
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import { Header, Body, Scroll, DivTitle, Title, SubTitle, Content  } from './styles';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import EventCard from '../../../components/EventCard/index';
 import EventSmallCard from '../../../components/EventSmallCard/index';
 import EventDetails from '../../EventDetails/index';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 Home.navigationOptions = {
     header: null,
@@ -75,9 +74,6 @@ export default function Home() {
 
                     <SubTitle>Eventos populares</SubTitle>
 
-                        <TouchableOpacity onPress={() => {navigation.navigate('EventDetails');}}>
-                            <Text>CLIQUE</Text>
-                        </TouchableOpacity>
                     <Scroll
                         horizontal = {true} 
                     >
@@ -86,7 +82,6 @@ export default function Home() {
                             events.map(event => {
                                 return (
                                     <EventCard key={event.id} name= {event.name} date={event.date} address={event.city} > </EventCard>
-                                   
                                 );
                             })
                         } */}
