@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 
 import { View, Text, Button, ScrollView } from 'react-native';
 import { InputLabel, Input } from '../../styles';
-import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox, LogoutBox } from './styles';
+import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox, LogoutBox, SubmitButtonText, ButtonsContainer } from './styles';
 
 import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text';
@@ -267,12 +267,14 @@ export default function Account() {
                     </FormBox>
                     </Form>
                     }
-                    <SubmitButton> 
-                        <Button color="transparent" title='Salvar Alterações' onPress={handleSubmit(onSubmit, onError)} />                   
-                    </SubmitButton>
-                    <LogoutBox>
-                        <Button color="transparent" title='S A I R' onPress={handleLogout}/>
-                    </LogoutBox>
+                    <ButtonsContainer>
+                        <SubmitButton onPress={handleSubmit(onSubmit, onError)}>
+                            <SubmitButtonText>Salvar Alterações</SubmitButtonText>
+                        </SubmitButton>
+                        <LogoutBox onPress={handleLogout}>
+                            <SubmitButtonText style={{fontWeight: 'bold'}}>S A I R</SubmitButtonText>
+                        </LogoutBox>
+                    </ButtonsContainer>
                 </Form>
 
             </ScrollView>

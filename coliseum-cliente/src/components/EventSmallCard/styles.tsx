@@ -98,9 +98,7 @@ export const EventName = styled.Text `
     font-size: 16px;
     font-weight: bold;
 
-    text-overflow: ellipsis;
-    overflow: hidden; 
-    white-space: nowrap;
+
 `;
 
 export const EventDate = styled.Text `

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
@@ -8,6 +8,7 @@ import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, Eve
 import { useNavigation } from '@react-navigation/native';
 
 import Phone from '../../components/PromoterPhone/index';
+import img from '../../../assets/unnamed.jpg';
 
 import api from '../../services/api';
 
@@ -24,14 +25,14 @@ interface EventData {
     participants: number,
 }
 
-export default function EventDetails() {
+export default function EventDetails(props:any) {
 
+    const event_id = props.route.params.eventId;
     const [ buttonClicked, setButtonClicked ] = useState(false);
     const [ infoClicked, setInfoClicked ] = useState(false);
 
     // nao vai precisar desses dois de baixo depois pq os dois ids vao vir direto 
     // entao soh teria que chamar como props.event_id e props.user_id
-    const [ event_id, setEventId ] = useState(1); //preciso depois passar o id pela home, precisa ser recebido antes de mandar pra useeffect
     const [ user_id , setUserId ] = useState(1); //seta o userId uma vez que o phone do promoter nao vem na resposta
 
     const [ eventDetails, setEventDetails ] = useState<EventData>();
@@ -44,6 +45,7 @@ export default function EventDetails() {
         api.get(`api/event/${event_id}`).then( response => {
             setEventDetails(response.data)
             setPromoterName(response.data.user.name)
+            setUserId(response.data.user.id)
         })
 
         api.get(`api/user/${user_id}`).then( response => {
@@ -63,7 +65,11 @@ export default function EventDetails() {
             {/* foto e data */}
             <Header>
                 {/* foto */}
-                <Photo/>
+                <Image
+                    source={img}
+                    style={{width: '100%', height: '100%'}}
+                    resizeMode="cover"
+                />
                 {/* data */}
                 <MainInfo>
                     <LinearGradient
@@ -86,7 +92,7 @@ export default function EventDetails() {
                             <Month>Abr</Month>
                         </DataBox>
                         {/* nome e endereço */}
-                        <View style={{width:'80%', height:'12'}}>
+                        <View style={{width:'80%', height:'12%'}}>
                             <EventTitle>{eventDetails.name}</EventTitle>
                             <EventAddress>{eventDetails.street} {eventDetails.number}, {eventDetails.neighborhood} - {eventDetails.city}</EventAddress>
                         </View>
@@ -100,7 +106,7 @@ export default function EventDetails() {
             <FollowEventContainer>
                 {/* bloco dos confirmados */}
                 <PeopleFollowing>
-                    <Icon name="group" size={24} color="#32CFE3"/>
+                    <Icon name="users" size={24} color="#32CFE3"/>
                     <FollowingNumber>{eventDetails.participants} confirmados</FollowingNumber>
                 </PeopleFollowing>
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 
 import mapMarker from '../../../../assets/marker.png';
-import { Content, CalloutContainer, CalloutText } from './styles';
+import { Content } from './styles';
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
@@ -26,8 +26,8 @@ export default function EventsMap() {
         })
     });
 
-    function handleNavigateToEventDetails(id: number) {
-        navigation.navigate('EventDetails', { id });
+    function handleNavigateToEventDetails(id:any) {
+        navigation.navigate('EventDetails', { eventId:id });
     }
 
     return (
@@ -51,7 +51,6 @@ export default function EventsMap() {
                     return (
                         <Marker
                             key={event.id}
-                            icon={mapMarker}
                             calloutAnchor={{
                                 x: 2.8,
                                 y: 0.8,
@@ -60,12 +59,18 @@ export default function EventsMap() {
                                 latitude: event.latitude,
                                 longitude: event.longitude,
                             }}
+                            onPress={() => {handleNavigateToEventDetails(event.id)} }
                         >
-                          <Callout tooltip onPress={() => {handleNavigateToEventDetails(event.id)}}>
+                          {/* <Callout tooltip onPress={() => {handleNavigateToEventDetails(event.id)}}>
                             <CalloutContainer>
-                              <CalloutText style={styles.calloutText}>{event.name}</CalloutText>
+                              <CalloutText>{event.name}</CalloutText>
                             </CalloutContainer>
-                          </Callout>
+                          </Callout> */}
+                          <Image 
+                            source={mapMarker}
+                            style={{width: 60, height: 60}}
+                            
+                            />
                         </Marker>
                     );
                 })
