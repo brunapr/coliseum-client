@@ -1,10 +1,9 @@
 import styled from 'styled-components/native';
-import eventImage from '../../../assets/Event.png';
 
 export const Card = styled.View `
     background: white;
 
-    width: 44%;
+    width: 78%;
     height: 70%;
 
     display: flex;
@@ -12,19 +11,15 @@ export const Card = styled.View `
     align-items: center;
 
     margin: 2%;
-    margin-left: 4%;
+    margin-left: 10%;
 
     border-radius:30px;
 `;
 
 export const DivImage = styled.View `
-    
-    background-image: url(${eventImage});
-    background-size: cover;
-    background-repeat: no-repeat;
 
     width: 100%;
-    height: 65%;
+    height: 25%;
 
     display: flex;
     flex-direction: row;
@@ -80,7 +75,7 @@ export const DivEventName = styled.View `
 
 export const DivEventDate = styled.View `
   
-    width: 25%;
+    width: 20%;
     height: 100%;
 
     display: flex;
@@ -97,8 +92,7 @@ export const DivEventAddress = styled.View `
 
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    margin-left: 3.5%;
 
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -108,7 +102,7 @@ export const DivEventAddress = styled.View `
 export const EventName = styled.Text `
     color: black;
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 
 `;
@@ -123,8 +117,7 @@ export const EventDate = styled.Text `
 
 export const EventAddress = styled.Text `
     color: grey;
-    text-align: center;
-    font-size: 18px;
+    font-size: 14px;
     
 `;
 

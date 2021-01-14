@@ -63,7 +63,7 @@ export default function Login() {
                                     keyboardType='email-address'
                                     textContentType='emailAddress'
                                     onBlur={props.onBlur}
-                                    onChangeText={(value) => props.onChange(value)}
+                                    onChangeText={(value:any) => props.onChange(value)}
                                     value={props.value}
                                 />
                             )}
@@ -90,7 +90,7 @@ export default function Login() {
                                     autoCorrect={false}
                                     textContentType='password'
                                     onBlur={props.onBlur}
-                                    onChangeText={(value) => props.onChange(value)}
+                                    onChangeText={(value:any) => props.onChange(value)}
                                     value={props.value}
                                 />
                             )}

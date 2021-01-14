@@ -12,6 +12,7 @@ import { RadioButton } from 'react-native-paper';
 
 import api from '../../../services/api';
 import { user_token } from '../../../services/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface EditData {
     name: string,
@@ -60,7 +61,7 @@ export default function Account() {
         }, (error => {
             navigation.navigate('Login')
         }))
-    }, [user_id])
+    }, [userDetails])
 
     //aparecer caregamento enquanto userDetails não recebe resposta
     if (!userDetails) {
@@ -72,7 +73,7 @@ export default function Account() {
     //deslogar
     function handleLogout() {
         api.get('api/logout', { headers: { Authorization: Auth } }).then(response => {
-            localStorage.removeItem('token')
+            AsyncStorage.removeItem('token')
             alert('Você foi deslogado com sucesso!')
             console.log('Você foi deslogado com sucesso!')
             navigation.navigate('Home')

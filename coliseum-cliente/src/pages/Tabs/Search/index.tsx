@@ -3,13 +3,14 @@ import { TouchableHighlight, View, Text } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import { Input } from '../../styles';
-import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent, Scroll } from './styles';
+import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent, Scroll, WrapResults } from './styles';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 
 import Filter from '../../../components/Filter/index';
 import api from '../../../services/api';
+import EventSmallCard from '../../../components/EventSmallCard';
 
 interface EditSearch {
     text: string
@@ -19,6 +20,7 @@ interface Events {
     event: {
       id: number,
       name: string,
+      date: string,
       neighborhood: string,
     }
 }
@@ -115,15 +117,14 @@ export default function Search() {
             }
 
             <Scroll>
-              {/* componente dos eventos */}
-              {searchResults?.map(searchResult => {
-                return(
-                  <View key={searchResult.event.id}>
-                    <Text>{searchResult.event.name}</Text>
-                    <Text>{searchResult.event.neighborhood}</Text>
-                  </View>
-                )
-              })}
+              <WrapResults>
+                {/* componente dos eventos */}
+                {searchResults?.map(searchResult => {
+                  return(
+                      <EventSmallCard key={searchResult.event.id} name={searchResult.event.name} date={searchResult.event.date} address={searchResult.event.neighborhood}/>
+                  )
+                })}
+              </WrapResults>
             </Scroll>
         </Content>
     );

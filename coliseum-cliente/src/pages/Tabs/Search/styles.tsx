@@ -68,10 +68,14 @@ export const FilterComponent = styled.View `
 
   export const Scroll = styled.View `
         width: 100%;
-        height: 75%;
+        height: 100%;
         margin-top: 10%;
 
         display: flex;
         flex-direction: column;
-        align-items: center;
     `;
+
+export const WrapResults = styled.View `
+    width: 100%;
+    height: 40%;
+`;

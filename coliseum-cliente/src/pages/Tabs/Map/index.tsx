@@ -61,11 +61,6 @@ export default function EventsMap() {
                             }}
                             onPress={() => {handleNavigateToEventDetails(event.id)} }
                         >
-                          {/* <Callout tooltip onPress={() => {handleNavigateToEventDetails(event.id)}}>
-                            <CalloutContainer>
-                              <CalloutText>{event.name}</CalloutText>
-                            </CalloutContainer>
-                          </Callout> */}
                           <Image 
                             source={mapMarker}
                             style={{width: 60, height: 60}}
