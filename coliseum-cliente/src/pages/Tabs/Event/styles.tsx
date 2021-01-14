@@ -2,13 +2,13 @@ import styled from 'styled-components/native';
 
 export const Content = styled.View `
     width: 100%;
-    height: 100vh;
+    height: 100%;
   
 `;
 
 export const Header = styled.View `
     width: 100%;
-    height: 15vh;
+    height: 30%;
 
     display: flex;
     flex-direction: row;
@@ -18,7 +18,7 @@ export const Header = styled.View `
 
 export const Body = styled.ScrollView `
     width: 100%;
-    height: 85vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     
@@ -26,7 +26,7 @@ export const Body = styled.ScrollView `
 
 export const CurrentContainer = styled.View `
     width: 100%;
-    height: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     
@@ -34,7 +34,7 @@ export const CurrentContainer = styled.View `
 
 export const PreviusContainer = styled.View `
     width: 100%;
-    height: 50%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@ export const PreviusContainer = styled.View `
 
 export const DivButtons = styled.View `
     width: 100%;
-    height: 10vh;
+    height: 100%;
 
     display: flex;
     flex-direction: row;

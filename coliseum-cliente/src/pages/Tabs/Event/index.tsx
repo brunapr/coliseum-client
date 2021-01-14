@@ -42,14 +42,14 @@ export default function Event(props:any) {
                                 </ButtonAble>
 
                                 <ButtonUnable onPress={changeToPrevius}>
-                                <ButtonText>Eventos Anteriores</ButtonText>
+                                <ButtonText style={{color: 'grey'}}>Eventos Anteriores</ButtonText>
                                 </ButtonUnable>
 
                             </DivButtons>
 
                          :  <DivButtons>
                                 <ButtonUnable onPress={changeToActual}>
-                                <ButtonText>Eventos Atuais</ButtonText>
+                                <ButtonText style={{color: 'grey'}}>Eventos Atuais</ButtonText>
                                 </ButtonUnable>
 
                                 <ButtonAble onPress={changeToPrevius}>

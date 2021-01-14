@@ -23,6 +23,12 @@ interface EditData {
     passwordConfirmation: string,
 }
 
+var Auth:string;
+
+user_token().then(value => {
+    Auth = value;
+});
+
 export default function Account() {
 
     const navigation = useNavigation();
@@ -48,7 +54,7 @@ export default function Account() {
     const [editPassword, setEditPassword] = useState(false);
 
     useEffect(() => {
-        api.get('api/getDetails', { headers: { Authorization: user_token } }).then(response => {
+        api.get('api/getDetails', { headers: { Authorization: Auth } }).then(response => {
             setUserDetails(response.data);
             setUserId(response.data.id)
         }, (error => {
@@ -61,6 +67,8 @@ export default function Account() {
         return <Header style={{marginTop: '50%'}}><Title>Carregando...</Title></Header>;
     }
 
+  
+
     //deslogar
     function handleLogout() {
         api.get('api/logout', { headers: { Authorization: Auth } }).then(response => {
@@ -68,7 +76,6 @@ export default function Account() {
             alert('Você foi deslogado com sucesso!')
             console.log('Você foi deslogado com sucesso!')
             navigation.navigate('Home')
-            document.location.reload(true);
         })
     }
 
@@ -96,7 +103,7 @@ export default function Account() {
                                     autoCorrect={false}
                                     textContentType='name'
                                     onBlur={onBlur}
-                                    onChangeText={(value) => onChange(value)}
+                                    onChangeText={(value:any) => onChange(value)}
                                     value={value}
                                 />
                             )}
@@ -117,7 +124,7 @@ export default function Account() {
                                     keyboardType='email-address'
                                     textContentType='emailAddress'
                                     onBlur={props.onBlur}
-                                    onChangeText={(value) => props.onChange(value)}
+                                    onChangeText={(value:any) => props.onChange(value)}
                                     value={props.value}
                                 />
                             )}
@@ -194,7 +201,7 @@ export default function Account() {
                                     textContentType='newPassword'
                                     onBlur={props.onBlur}
                                     onFocus={() => setEditPassword(!editPassword)}
-                                    onChangeText={(value) => props.onChange(value)}
+                                    onChangeText={(value:any) => props.onChange(value)}
                                     value={props.value}
                                 />
                             )}
@@ -217,7 +224,7 @@ export default function Account() {
                                     autoCorrect={false}
                                     textContentType='password'
                                     onBlur={props.onBlur}
-                                    onChangeText={(value) => props.onChange(value)}
+                                    onChangeText={(value:any) => props.onChange(value)}
                                     value={props.value}
                                 />
                             )}
@@ -240,7 +247,7 @@ export default function Account() {
                                     autoCorrect={false}
                                     textContentType='password'
                                     onBlur={props.onBlur}
-                                    onChangeText={(value) => props.onChange(value)}
+                                    onChangeText={(value:any) => props.onChange(value)}
                                     value={props.value}
                                 />
                             )}

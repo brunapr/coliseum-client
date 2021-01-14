@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import { BiCommentDetail, BiGroup } from "react-icons/bi";
-import { FaChevronCircleLeft, FaInfoCircle } from 'react-icons/fa';
+import Icon from 'react-native-vector-icons/Feather';
 
 import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType, BackIcon, PromoterContainer, InfoButton } from './styles';
 import { useNavigation } from '@react-navigation/native';
@@ -59,8 +57,8 @@ export default function EventDetails() {
     
     return(
         <Container>
-            <BackIcon onPress={() => {navigation.navigate('Home'); document.location.reload(true);}}>
-                <FaChevronCircleLeft size={36} color={'#32CFE3'}/>
+            <BackIcon onPress={() => {navigation.navigate('Home')}}>
+                <Icon name="arrow-left-circle" size={36} color="#32CFE3" />
             </BackIcon>
             {/* foto e data */}
             <Header>
@@ -88,13 +86,13 @@ export default function EventDetails() {
                             <Month>Abr</Month>
                         </DataBox>
                         {/* nome e endereço */}
-                        <View style={{width:'80%', height:'12vw'}}>
+                        <View style={{width:'80%', height:'12'}}>
                             <EventTitle>{eventDetails.name}</EventTitle>
                             <EventAddress>{eventDetails.street} {eventDetails.number}, {eventDetails.neighborhood} - {eventDetails.city}</EventAddress>
                         </View>
                     </MainData>
                     {/* caixinha de comentario */}
-                    <BiCommentDetail style={{zIndex: 1, marginRight: "7.5%"}} color="#fff" size={24}/>
+                    <Icon name="message-square" size={24} color="#fff" style={{zIndex: 1, marginRight: "7.5%"}}/>
                 </MainInfo>
             </Header>
 
@@ -102,7 +100,7 @@ export default function EventDetails() {
             <FollowEventContainer>
                 {/* bloco dos confirmados */}
                 <PeopleFollowing>
-                    <BiGroup size={24} color={'#32CFE3'}/>
+                    <Icon name="group" size={24} color="#32CFE3"/>
                     <FollowingNumber>{eventDetails.participants} confirmados</FollowingNumber>
                 </PeopleFollowing>
 
@@ -125,7 +123,7 @@ export default function EventDetails() {
                     <PromoterContainer>
                         <DetailData>{promoterName} </DetailData> 
                         <InfoButton onPress={() => setInfoClicked(!infoClicked)}>
-                            <FaInfoCircle size={20}/>
+                            <Icon name="info" size={20} color="#000"/>
                         </InfoButton>
                         { infoClicked && <Phone phone={promoterPhone}/> }
                     </PromoterContainer>

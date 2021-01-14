@@ -15,13 +15,13 @@ export const BackIcon = styled.TouchableOpacity `
 `;
 
 export const Header = styled.View `
-    width: 100vw;
-    height: 65vw;
+    width: 100%;
+    height: 65%;
 `;
 
 export const Photo = styled.View `
-    width: 100vw;
-    height: 60vw;
+    width: 100%;
+    height: 60%;
 
     background-image: url(${img});
     background-size: cover;
@@ -33,8 +33,8 @@ export const MainInfo = styled.View `
     position: absolute;
     bottom: 0;
 
-    width: 100vw;
-    height: 18vw;
+    width: 100%;
+    height: 18%;
 
     display: flex;
     flex-direction: row;
@@ -52,8 +52,8 @@ export const MainData = styled.View `
 `;
 
 export const DataBox = styled.View `
-    width: 12vw;
-    height: 12vw;
+    width: 12%;
+    height: 12%;
     border-radius: 10px;
     margin-right: 2%;
 
@@ -68,13 +68,13 @@ export const DataBox = styled.View `
 export const Data = styled.Text `
     color: #FF4D00;
     font-weight: bold;
-    font-size: 120%;
+    font-size: 30px;
     line-height: 15px;
 `;
 export const Month = styled.Text `
     color: #FF4D00;
     font-style: italic;
-    font-size: 80%;
+    font-size: 20px;
 `;
 
 export const EventTitle = styled.Text `
@@ -86,7 +86,7 @@ export const EventTitle = styled.Text `
 export const EventAddress = styled.Text `
     color: #fff;
     font-weight: 200;
-    font-size: 80%;
+    font-size: 22px;
     font-style: italic;
     line-height: 12px;
 `;
@@ -138,14 +138,14 @@ export const FollowButtonClicked = styled.TouchableOpacity `
 export const ButtonText = styled.Text `
     color: #32CFE3;
     font-weight: bold;
-    font-size: 90%;
+    font-size: 20px;
     letter-spacing: 0.5px;
 `;
 
 export const ButtonTextClicked = styled.Text `
     color: #fff;
     font-weight: bold;
-    font-size: 90%;
+    font-size: 20px;
     letter-spacing: 0.5px;
 `;
 
@@ -158,7 +158,6 @@ export const AllDetails = styled.View `
 `;
 
 export const AllDetailsTitle = styled.Text `
-    font-size: 100%;
     font-weight: 600;
     margin-bottom: 3%;
 `;
@@ -171,14 +170,14 @@ export const DetailType = styled.Text `
     color: #5A5A5A;
     font-style: italic;
     font-weight: 600;
-    font-size: 85%;
+    font-size: 20px;
     letter-spacing: -0.5px;
 `;
 
 export const DetailData = styled.Text `
     width: auto;
     color: #5A5A5A;
-    font-size: 95%;
+    font-size: 22px;
 `;
 
 export const PromoterContainer = styled.View `

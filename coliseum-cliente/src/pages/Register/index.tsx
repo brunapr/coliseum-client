@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput, ScrollView } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { useForm, Controller } from 'react-hook-form';
@@ -7,10 +7,11 @@ import { TextInputMask } from 'react-native-masked-text';
 import { RadioButton } from 'react-native-paper';
 
 import { Container, Content, Title, InputBox, InputLabel, BackIcon } from '../styles';
-import { SubmitButton, Input } from './styles';
-import { FaChevronCircleLeft } from 'react-icons/fa';
+import { SubmitButton, Input, SubmitButtonText } from './styles';
+import Icon from 'react-native-vector-icons/Feather';
 
 import api from '../../services/api';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 interface RegisterData {
@@ -37,10 +38,12 @@ export default function Register() {
     const navigation = useNavigation();
 
     return (
+        <ScrollView>
         <Container>
             <BackIcon style={{top:20}} onPress={() => navigation.navigate('Login')}>
-                <FaChevronCircleLeft size={36} color={'#32CFE3'}/>
+                <Icon name="arrow-left-circle" size={35} color="#32CFE3" />
             </BackIcon>
+            
             <Content>
                 <Title>Crie sua conta</Title>
                 <InputBox>
@@ -199,9 +202,13 @@ export default function Register() {
                 </InputBox>
                 
                 <SubmitButton>
-                    <Button color="transparent" title='CADASTRAR' onPress={handleSubmit(onSubmit, onError)} />
+                    <SubmitButton onPress={handleSubmit(onSubmit, onError)}>
+                        <SubmitButtonText>CADASTRAR</SubmitButtonText>
+                    </SubmitButton>
                 </SubmitButton>
             </Content>
+            
         </Container>
+        </ScrollView>
     )
 }

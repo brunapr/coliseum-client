@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 
-import { BiHome, BiSearch, BiMap, BiSticker, BiUser } from "react-icons/bi";
+import Icon from 'react-native-vector-icons/Feather';
 
 import Account from './Account/index';
 import Home from './Home/index';
@@ -25,7 +25,7 @@ const Tab = createBottomTabNavigator();
                 <Tab.Screen name="Home" component={Home} 
                 options={{
                     tabBarIcon:({}) =>(
-                        <BiHome size="30" color='#FF4D00'/>
+                        <Icon name="home" size={30} color="#FF4D00" />
                     ),
                 }}
                 />
@@ -33,7 +33,7 @@ const Tab = createBottomTabNavigator();
                 <Tab.Screen name="Search" component={Search} 
                 options={{
                     tabBarIcon:({}) =>(
-                        <BiSearch size="30" color='#FF4D00'/>
+                        <Icon name="search" size={30} color="#FF4D00" />
                     ),
                 }}
                 />
@@ -41,7 +41,7 @@ const Tab = createBottomTabNavigator();
                 <Tab.Screen name="Map" component={Map} 
                 options={{
                     tabBarIcon:({}) =>(
-                        <BiMap size="30" color='#FF4D00'/>
+                        <Icon name="map" size={30} color="#FF4D00" />
                     ),
                 }}
                 />
@@ -49,7 +49,7 @@ const Tab = createBottomTabNavigator();
                 <Tab.Screen name="Event" component={Event} 
                 options={{
                     tabBarIcon:({}) =>(
-                        <BiSticker size="30" color='#FF4D00'/>
+                        <Icon name="zap" size={30} color="#FF4D00" />
                     ),
                 }}
                 />
@@ -57,7 +57,7 @@ const Tab = createBottomTabNavigator();
                 <Tab.Screen name="User" component={Account} 
                 options={{
                     tabBarIcon:({}) =>(
-                        <BiUser size="30" color='#FF4D00' />
+                        <Icon name="user" size={30} color="#FF4D00" />
                     ),
                 }}
                 />

@@ -12,7 +12,7 @@ export default function Filter(props:any) {
                 <Title>Filtrar</Title>
             </TitleBox>
 
-                <FilterBox>
+            <FilterBox>
                 <RadioButton
                     value="first"
                     color="#32CFE3"
@@ -20,17 +20,17 @@ export default function Filter(props:any) {
                     onPress={() => props.filterChange('first')}
                 />
                     <FilterText>Procure pelo nome</FilterText>
-                </FilterBox>
-                <FilterBox>
-                <RadioButton
-                    value="second"
-                    color="#32CFE3"
-                    status={ props.parentChange === 'second' ? 'checked' : 'unchecked' }
-                    onPress={() => props.filterChange('second')}
-                />
-                {console.log(props.parentChange)}
-                {console.log("CONSOLE LOG DO COMPONENTE EM CIMA")}
-                    <FilterText>Procure pelo bairro</FilterText>
+            </FilterBox>
+            <FilterBox>
+                    <RadioButton
+                        value="second"
+                        color="#32CFE3"
+                        status={ props.parentChange === 'second' ? 'checked' : 'unchecked' }
+                        onPress={() => props.filterChange('second')}
+                    />
+                    {console.log(props.parentChange)}
+                    {console.log("CONSOLE LOG DO COMPONENTE EM CIMA")}
+                        <FilterText>Procure pelo bairro</FilterText>
                 </FilterBox>
 
             <GoFilter onPress={() => props.filterClose(false)}>

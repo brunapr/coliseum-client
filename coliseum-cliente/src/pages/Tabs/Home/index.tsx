@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import api from '../../../services/api';
 
-import { View, Text, Button, TextInput, ScrollView } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
+import { ScrollView } from 'react-native';
 
-import { Header, Body, p, Scroll, DivTitle, Title, SubTitle, Content  } from './styles';
+import { Header, Body, Scroll, DivTitle, Title, SubTitle, Content  } from './styles';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import EventCard from '../../../components/EventCard/index';
 import EventSmallCard from '../../../components/EventSmallCard/index';
-import { useEffect } from 'react';
 
 Home.navigationOptions = {
     header: null,
@@ -25,7 +22,6 @@ interface Event {
     name: string;
     city:string;
     date:string;
- 
 }
 
 export default function Home() {
@@ -41,13 +37,11 @@ export default function Home() {
         api.get('api/events').then(response => {
             setEvents(response.data);
         })
-    });
+    }, []);
 
     function handleNavigateToEventDetails(id: number) {
         navigation.navigate('EventDetails', { id });
     }
-
-
 
     return(
         <Content>
@@ -68,7 +62,6 @@ export default function Home() {
                         <DivTitle>
                         <Title>Encontre eventos perto de você</Title>
                         
-                        <img src="/../../../../assets/group.png" alt=""/>
                         </DivTitle>
                         
                         

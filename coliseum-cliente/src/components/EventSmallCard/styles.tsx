@@ -4,12 +4,12 @@ import img from '../../../assets/image1.png';
 export const Card = styled.View `
     background: white;
 
-    width: 78vw;
-    height: 12vh;
+    width: 78%;
+    height: 25%;
 
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: flex-start;
 
     margin-top: 3%;
     margin-bottom: 5%;
@@ -24,12 +24,12 @@ export const DivImage = styled.View `
     background-size: cover;
     background-repeat: no-repeat;
 
-    width: 20vw;
-    height: 12vh;
+    width: 20%;
+    height: 100%;
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -37,8 +37,8 @@ export const DivImage = styled.View `
 `;
 export const DivEventDetails = styled.View `
   
-    width: 58vw;
-    height: 12vh%;
+    width: 80%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -50,37 +50,38 @@ export const DivEventDetails = styled.View `
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 0px;
 
-    padding:1%;
+    padding: 1%;
     
 `;
 
 export const DivEventName = styled.View `
   
-    width: 58vw;
-    height: 100%;
+    width: 95%;
+    height: auto;
+    margin-left: 1%;
 
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center
+    justify-content: flex-start;
     
 `;
 
 export const DivEventDate = styled.View `
   
-    width: 58vw;
-    height: 100%;
+    width: 100%;
+    height: auto;
 
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
    
 `;
 
 export const DivEventAddress = styled.View `
   
-    width: 58vw;
+    width: 100%;
     height: 50%;
 
     display: flex;
@@ -94,20 +95,24 @@ export const DivEventAddress = styled.View `
 export const EventName = styled.Text `
     color: black;
     text-align: center;
-    font-size: 1em;
+    font-size: 16px;
     font-weight: bold;
+
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
 `;
 
 export const EventDate = styled.Text `
     color: black;
     text-align: center;
-    font-size: 0.9em;
+    font-size: 12px;
     font-style: italic;
 `;
 
 export const EventAddress = styled.Text `
     color: grey;
     text-align: center;
-    font-size: 1em;
+    font-size: 14px;
    
 `;

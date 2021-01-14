@@ -6,8 +6,8 @@ export const Content = styled.View `
 `;
 
 export const CalloutContainer = styled.View `
-    width: 160,
-    height: 46,
+    width: 160%,
+    height: 46%,
     paddingHorizontal: 16,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     borderRadius: 16,
