@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 
 import api from '../../../services/api';
 
@@ -72,16 +72,16 @@ export default function Home() {
                 <Body>
 
                     <SubTitle>Eventos populares</SubTitle>
-
+                <Fragment>
                     <ScrollPopular>
                         { events.map(event => {
                             return(
-                                <EventCard key={event.id} name={event.name} date={event.date} address={event.city}></EventCard>
+                                <EventCard key={event.id} name={event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}></EventCard>
                             );
                         })}
                         
                     </ScrollPopular>
-                    
+                </Fragment>
 
                     <SubTitle>Outros eventos</SubTitle>
 
@@ -90,7 +90,7 @@ export default function Home() {
                         {
                         events.map(event => {
                             return (
-                                <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city}> </EventSmallCard>
+                                <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}> </EventSmallCard>
                             );
                         })
                         }  

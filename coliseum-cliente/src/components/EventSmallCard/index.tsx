@@ -7,7 +7,7 @@ import img from '../../../assets/image1.png';
 export default function EventSmallCard(props:any) {
 
     return (
-        <Card>
+        <Card onClick={props.onPress}>
             <Image source={img} style={{width:'24%', height:'100%', borderTopLeftRadius:30, borderBottomLeftRadius:30}}/>
             <DivEventDetails>
                 <DivEventName> 

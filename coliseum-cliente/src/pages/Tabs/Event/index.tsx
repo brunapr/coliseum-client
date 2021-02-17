@@ -1,9 +1,10 @@
-import React from 'react';
-
+import React, {useEffect} from 'react';
+import api from '../../../services/api';
 import { View, Text, Button, ScrollView, TouchableHighlight} from 'react-native';
 
 import { Header, Title, SubTitle, Content, DivButtons, Body, CurrentContainer, PreviusContainer, ButtonUnable, ButtonAble, ButtonText, ButtonDelete} from './styles';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import EventSmallCard from '../../../components/EventSmallCard/index';
 import ReactDOM from 'react-dom';
@@ -15,8 +16,20 @@ Event.navigationOptions = {
 
 export default function Event(props:any) {
 
-    const events = props.eventsChange;
     const [ isActual,  setIsActual ] = useState(true);
+    const [events, setEvents] = useState<Event[]>([]);
+    const navigation = useNavigation();
+
+    interface Event {
+        id: number;
+        name: string;
+        city:string;
+        date:string;
+    }
+
+    function handleNavigateToEventDetails(id: number) {
+        navigation.navigate('EventDetails', { id });
+    }
 
     function changeToActual (){
         setIsActual(true);
@@ -25,6 +38,17 @@ export default function Event(props:any) {
     function changeToPrevius (){
         setIsActual(false);
     }
+
+    async function getEvents(){
+        await api.get('api/events').then(response => {
+            setEvents(response.data);
+        })
+    }
+
+    useEffect(() => {
+        getEvents();
+        console.log(events)
+    }, []);
 
     return(
 
@@ -68,10 +92,13 @@ export default function Event(props:any) {
                 { isActual
 
                     ? <CurrentContainer> 
-                       
-                        <EventSmallCard name= "Encontro de leitores" date="21/04/2021" address="Rua dos bobos, 21 - Madureira" > </EventSmallCard> 
-                        <EventSmallCard name= "Food Truck" date="30/05/2021" address="Rua dos bobos, 30 - Vista Alegre"> </EventSmallCard>
-                        <EventSmallCard name= "Vila Mix" date="01/06/2021" address="Rua dos bobos, 21 - Vila Valqueire"> </EventSmallCard>
+                       {
+                        events.map(event => {
+                            return (
+                                <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}> </EventSmallCard>
+                            );
+                        })
+                        }
 
                     </CurrentContainer>
 

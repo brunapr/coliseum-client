@@ -1,20 +1,20 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add global expo-cli
+  C:\Program Files\nodejs\node.exe C:\Users\T-gamer\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js upgrade
 
 PATH: 
-  C:\Users\User\AppData\Roaming\npm;C:\Program Files\nodejs\;C:\Python39\Scripts\;C:\Python39\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\User\AppData\Local\Microsoft\WindowsApps;;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\User\AppData\Roaming\npm;C:\Users\User\AppData\Roaming\Composer\vendor\bin
+  C:\Users\T-gamer\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\T-gamer\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Razer\ChromaBroadcast\bin;C:\Program Files\Razer\ChromaBroadcast\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\cmd;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\T-gamer\AppData\Local\Microsoft\WindowsApps;C:\Users\T-gamer\AppData\Roaming\Composer\vendor\bin;C:\Users\T-gamer\AppData\Roaming\npm;C:\Users\T-gamer\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.10
 
 Node version: 
-  14.15.4
+  14.15.1
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: EBUSY: resource busy or locked, copyfile 'C:\Users\User\AppData\Local\Yarn\Cache\v6\npm-@babel-compat-data-7.12.7-9329b4782a7d6bbd7eef57e11addf91ee3ef1e41-integrity\node_modules\@babel\compat-data\package.json' -> 'C:\Users\User\Downloads\ejcm\Coliseum\coliseum-cliente\node_modules\@babel\compat-data\package.json'
+  Error: EPERM: operation not permitted, unlink 'C:\Users\T-gamer\Desktop\Coliseum Iniciativa\Coliseum-Cliente\coliseum-cliente\node_modules\@babel\helper-builder-react-jsx\lib'
 
 npm manifest: 
   {
@@ -28,20 +28,22 @@ npm manifest:
     },
     "dependencies": {
       "@expo/xdl": "^59.0.3",
+      "@react-native-async-storage/async-storage": "^1.13.2",
       "@react-native-community/masked-view": "0.1.10",
       "@react-navigation/bottom-tabs": "^5.11.2",
       "@react-navigation/native": "^5.8.10",
       "@react-navigation/stack": "^5.12.8",
       "@types/react-native-maps": "^0.24.0",
       "@types/react-native-vector-icons": "^6.4.6",
-      "@types/styled-components": "^5.1.4",
+      "@types/styled-components": "^5.1.7",
       "axios": "^0.21.0",
       "expo": "^39.0.5",
-      "expo-cli": "^4.0.16",
+      "expo-cli": "^4.0.17",
       "expo-linear-gradient": "~8.3.0",
       "expo-status-bar": "~1.0.2",
       "global": "^4.4.0",
       "react": "16.13.1",
+      "react-app-rewired": "^2.1.8",
       "react-dom": "16.13.1",
       "react-hook-form": "^6.11.5",
       "react-icons": "^4.1.0",
@@ -55,6 +57,7 @@ npm manifest:
       "react-native-safe-area-context": "3.1.4",
       "react-native-screens": "~2.10.1",
       "react-native-text-input-mask": "^2.0.0",
+      "react-native-vector-icons": "^7.1.0",
       "react-native-web": "~0.13.12",
       "styled-components": "^5.2.1",
       "yarn": "^1.22.10"
@@ -66,7 +69,8 @@ npm manifest:
       "@types/react-native": "~0.63.2",
       "typescript": "~3.9.5"
     },
-    "private": true
+    "private": true,
+    "version": "0.0.0"
   }
 
 yarn manifest: 
@@ -2335,6 +2339,13 @@ Lockfile:
       native-url "^0.2.6"
       schema-utils "^2.6.5"
   
+  "@react-native-async-storage/async-storage@^1.13.2":
+    version "1.13.2"
+    resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.13.2.tgz#649f78527f16cd5a87071a888219ef7a35ef5c79"
+    integrity sha512-isTDvUApRJPVWFxV15yrQSOGqarX7cIedq/y4N5yWSnotf68D9qvDEv1I7rCXhkBDi0u4OJt6GA9dksUT0D3wg==
+    dependencies:
+      deep-assign "^3.0.0"
+  
   "@react-native-community/cli-debugger-ui@^4.13.1", "@react-native-community/cli-debugger-ui@^4.9.0":
     version "4.13.1"
     resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz#07de6d4dab80ec49231de1f1fbf658b4ad39b32c"
@@ -2793,14 +2804,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
     integrity sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
   
-  "@types/styled-components@^5.1.4":
-    version "5.1.4"
-    resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.4.tgz#11f167dbde268635c66adc89b5a5db2e69d75384"
-    integrity sha512-78f5Zuy0v/LTQNOYfpH+CINHpchzMMmAt9amY2YNtSgsk1TmlKm8L2Wijss/mtTrsUAVTm2CdGB8VOM65vA8xg==
+  "@types/styled-components@^5.1.7":
+    version "5.1.7"
+    resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.7.tgz#3cd10b088c1cb1acde2e4b166b3e8275a3083710"
+    integrity sha512-BJzPhFygYspyefAGFZTZ/8lCEY4Tk+Iqktvnko3xmJf9LrLqs3+grxPeU3O0zLl6yjbYBopD0/VikbHgXDbJtA==
     dependencies:
       "@types/hoist-non-react-statics" "*"
       "@types/react" "*"
-      "@types/react-native" "*"
       csstype "^3.0.2"
   
   "@types/tapable@*", "@types/tapable@^1.0.5":
@@ -5968,10 +5978,10 @@ Lockfile:
       path-browserify "^1.0.0"
       url-parse "^1.4.4"
   
-  expo-cli@^4.0.16:
-    version "4.0.16"
-    resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-4.0.16.tgz#98ff41026c4465375397b3b9aeb840fe9e0f68b1"
-    integrity sha512-gPTIyvBNvvE/DPphEF+NHRyVLRD7snDJx+yhPKxdBMEgJJcHxUN6tTfO3nEh7x6WyR+lo54p/WpRanRCVXFBdQ==
+  expo-cli@^4.0.17:
+    version "4.0.17"
+    resolved "https://registry.yarnpkg.com/expo-cli/-/expo-cli-4.0.17.tgz#c62333a3fcdc96885f4062937bdf2fc08a4091e3"
+    integrity sha512-JF8HBs5dUd14zh9cI+u/OEKyRJqJZ2wOPvHlsX2Ohgxw80Wk/BGtTtZzlWY8/PQ+Lm56RWx7RMFPYestsBmpBg==
     dependencies:
       "@expo/bunyan" "4.0.0"
       "@expo/config" "3.3.22"
@@ -8564,6 +8574,16 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
     integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
   
+  lodash.frompairs@^4.0.1:
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/lodash.frompairs/-/lodash.frompairs-4.0.1.tgz#bc4e5207fa2757c136e573614e9664506b2b1bd2"
+    integrity sha1-vE5SB/onV8E25XNhTpZkUGsrG9I=
+  
+  lodash.isequal@^4.5.0:
+    version "4.5.0"
+    resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+    integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+  
   lodash.isobject@^3.0.2:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
@@ -8579,7 +8599,17 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
     integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
   
-  lodash.template@^4.4.0:
+  lodash.omit@^4.5.0:
+    version "4.5.0"
+    resolved "https://registry.yarnpkg.com/lodash.omit/-/lodash.omit-4.5.0.tgz#6eb19ae5a1ee1dd9df0b969e66ce0b7fa30b5e60"
+    integrity sha1-brGa5aHuHdnfC5aeZs4Lf6MLXmA=
+  
+  lodash.pick@^4.4.0:
+    version "4.4.0"
+    resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
+    integrity sha1-UvBWEP/53tQiYRRB7R/BI6AwAbM=
+  
+  lodash.template@^4.4.0, lodash.template@^4.5.0:
     version "4.5.0"
     resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.5.0.tgz#f976195cf3f347d0d5f52483569fe8031ccce8ab"
     integrity sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==
@@ -11263,6 +11293,13 @@ Lockfile:
       minimist "^1.2.0"
       strip-json-comments "~2.0.1"
   
+  react-app-rewired@^2.1.8:
+    version "2.1.8"
+    resolved "https://registry.yarnpkg.com/react-app-rewired/-/react-app-rewired-2.1.8.tgz#e192f93b98daf96889418d33d3e86cf863812b56"
+    integrity sha512-wjXPdKPLscA7mn0I1de1NHrbfWdXz4S1ladaGgHVKdn1hTgKK5N6EdGIJM0KrS6bKnJBj7WuqJroDTsPKKr66Q==
+    dependencies:
+      semver "^5.6.0"
+  
   react-dev-utils@~11.0.1:
     version "11.0.1"
     resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-11.0.1.tgz#30106c2055acfd6b047d2dc478a85c356e66fe45"
@@ -11401,6 +11438,20 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/react-native-text-input-mask/-/react-native-text-input-mask-2.0.0.tgz#9cb793e764355d9282d92ea5231d8030a7ca5692"
     integrity sha512-kP8gURb1+6iR6CxfUx802f4ja9Jzer76hY1w0cjaCVsfbbzyykYIAANTnlxbmFFv/8pQl4NTm1CbQqkg0Cp/gA==
+  
+  react-native-vector-icons@^7.1.0:
+    version "7.1.0"
+    resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-7.1.0.tgz#145487d617b2a81d395d2cf64e6e065fcab3a454"
+    integrity sha512-V2a1zJ4i+kS8O4j183gIwX14St9AxxXabxwYpFBgRhvr2NDXyFcjHDEAgrOYYlt2W57e20aN1tBDU/I+wn9WtQ==
+    dependencies:
+      lodash.frompairs "^4.0.1"
+      lodash.isequal "^4.5.0"
+      lodash.isstring "^4.0.1"
+      lodash.omit "^4.5.0"
+      lodash.pick "^4.4.0"
+      lodash.template "^4.5.0"
+      prop-types "^15.7.2"
+      yargs "^15.0.2"
   
   react-native-web@~0.13.12:
     version "0.13.18"
@@ -14316,7 +14367,7 @@ Lockfile:
       y18n "^4.0.0"
       yargs-parser "^15.0.1"
   
-  yargs@^15.1.0:
+  yargs@^15.0.2, yargs@^15.1.0:
     version "15.4.1"
     resolved "https://registry.yarnpkg.com/yargs/-/yargs-15.4.1.tgz#0d87a16de01aee9d8bec2bfbf74f67851730f4f8"
     integrity sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==
@@ -14332,6 +14383,11 @@ Lockfile:
       which-module "^2.0.0"
       y18n "^4.0.0"
       yargs-parser "^18.1.2"
+  
+  yarn@^1.22.10:
+    version "1.22.10"
+    resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.10.tgz#c99daa06257c80f8fa2c3f1490724e394c26b18c"
+    integrity sha512-IanQGI9RRPAN87VGTF7zs2uxkSyQSrSPsju0COgbsKQOOXr5LtcVPeyXWgwVa0ywG3d8dg6kSYKGBuYK021qeA==
   
   yocto-queue@^0.1.0:
     version "0.1.0"

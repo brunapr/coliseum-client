@@ -8,9 +8,10 @@ import img from '../../../assets/image3.png';
 
 export default function EventCard(props:any) {
 
+
     return (
 
-        <Card >
+        <Card onClick={props.onPress}>
             <Image source={img} style={{width:'100%', height:'65%', borderTopLeftRadius:30, borderTopRightRadius:30}}/>
             
             <DivEventDetails>

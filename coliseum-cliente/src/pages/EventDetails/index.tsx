@@ -27,7 +27,7 @@ interface EventData {
 
 export default function EventDetails(props:any) {
 
-    const event_id = props.route.params.eventId;
+    const event_id = props.route.params.id;
     const [ buttonClicked, setButtonClicked ] = useState(false);
     const [ infoClicked, setInfoClicked ] = useState(false);
 
@@ -40,6 +40,8 @@ export default function EventDetails(props:any) {
     const [ promoterName, setPromoterName ] = useState();
 
     const navigation = useNavigation();
+
+
 
     useEffect(() => {
         api.get(`api/event/${event_id}`).then( response => {
