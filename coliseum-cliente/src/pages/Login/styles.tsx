@@ -34,8 +34,9 @@ export const Title = styled.Text `
 `;
 
 export const SubTitle = styled.Text `
-    font-size: 26px;
+    font-size: 20px;
     color: #FF4D00;
+    margin-bottom: 5%;
 `;
 
 export const Form = styled.View `

@@ -32,13 +32,14 @@ export default function EventsMap() {
 
     return (
         <Content>
-          <MapView
+          {/* <MapView
               provider={PROVIDER_GOOGLE}
               style={{
                 width: Dimensions.get('window').width,
                 height: Dimensions.get('window').height,
               }}
               initialRegion={{
+                //   mudar pra latitude da pessoa futuramente
                   latitude: -22.8897679,
                   longitude: -43.3749809,
                   latitudeDelta: 0.008,
@@ -71,7 +72,7 @@ export default function EventsMap() {
                 })
             }
             
-          </MapView>
+          </MapView> */}
         </Content>
     );
 }

@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -8,15 +8,24 @@ import Home from './Home/index';
 import Search from './Search/index';
 import Map from './Map/index';
 import Event from './Event/index';
+import LoginNavigate from '../../components/LoginNavigate';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { user_token, checkIsLoggedIn, isLoggedIn } from '../../services/auth';
 
 const Tab = createBottomTabNavigator();
 
     export default function MyTabs() {
 
+        const [ checkLogIn, setCheckLogIn ] = useState(false);
+
+        user_token().then(value => {
+            checkIsLoggedIn();
+            setCheckLogIn(isLoggedIn);
+        });
+
         return (
-        
             <Tab.Navigator
                 tabBarOptions={{
                     showLabel:false,
@@ -46,21 +55,34 @@ const Tab = createBottomTabNavigator();
                 }}
                 />
 
-                <Tab.Screen name="Event" component={Event} 
-                options={{
-                    tabBarIcon:({}) =>(
-                        <Icon name="zap" size={30} color="#FF4D00" />
-                    ),
-                }}
-                />
+                {
+                    checkLogIn && 
+                        <Tab.Screen name="Event" component={Event}
+                        options={{
+                            tabBarIcon:({}) =>(
+                                <Icon name="zap" size={30} color="#FF4D00" />
+                            ),
+                        }}
+                        />
+                }
 
-                <Tab.Screen name="User" component={Account} 
-                options={{
-                    tabBarIcon:({}) =>(
-                        <Icon name="user" size={30} color="#FF4D00" />
-                    ),
-                }}
-                />
+                {
+                    checkLogIn ? 
+                        <Tab.Screen name="User" component={Account} 
+                        options={{
+                            tabBarIcon:({}) =>(
+                                <Icon name="user" size={30} color="#FF4D00" />
+                            ),
+                        }}
+                        /> :
+                        <Tab.Screen name="User" component={LoginNavigate} 
+                        options={{
+                            tabBarIcon:({}) =>(
+                                <Icon name="user" size={30} color="#FF4D00" />
+                            ),
+                        }}
+                        />
+                }
                 
             </Tab.Navigator>
         );

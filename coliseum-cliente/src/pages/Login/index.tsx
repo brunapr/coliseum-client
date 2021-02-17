@@ -33,7 +33,6 @@ export default function Login() {
             navigation.navigate('Home');
         }, 
         (error => ('Login não pode ser concluído.'))) };
-
         
 
     const onError = (errors: Object) => { console.log(errors) };

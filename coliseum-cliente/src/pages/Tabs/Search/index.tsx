@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import Filter from '../../../components/Filter/index';
 import api from '../../../services/api';
 import EventSmallCard from '../../../components/EventSmallCard';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface EditSearch {
     text: string
@@ -87,9 +88,9 @@ export default function Search() {
                 }}
             />
                 <InputBox>
-                    <TouchableHighlight onPress={handleSubmit(onSubmit)}>
+                    <TouchableOpacity onPress={handleSubmit(onSubmit)}>
                       <Icon name="search" size={20} color="#535353" />
-                    </TouchableHighlight>
+                    </TouchableOpacity>
 
                     <Controller
                         control={control}
