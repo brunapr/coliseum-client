@@ -8,7 +8,7 @@ export const Content = styled.View `
 
 export const Header = styled.View `
     width: 100%;
-    height: 30%;
+    height: 35%;
 
     display: flex;
     flex-direction: row;
@@ -74,17 +74,22 @@ export const ButtonUnable = styled.TouchableOpacity `
     justify-content: center;
     align-items: center;
 
-    bottom-bottom: 1px solid red;
+    border-bottom-width: 2px;
+    border-bottom-color: grey;
+
 `;
 
 export const ButtonAble = styled.TouchableOpacity `
     width: 50%;
     height: 100%;
-    background-color: #E5BCAA;
+    background-color: #ffd7b5;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    border-bottom-width: 2px;
+    border-bottom-color: #FF4D00;
 `;
 
 export const ButtonDelete = styled.TouchableOpacity `

@@ -62,15 +62,15 @@ export default function EventDetails(props:any) {
             <BackIcon onPress={() => {navigation.navigate('Home')}}>
                 <Icon name="arrow-left-circle" size={36} color="#32CFE3" />
             </BackIcon>
-            {/* foto e data */}
+
             <Header>
-                {/* foto */}
+
                 <Image
                     source={img}
                     style={{width: '100%', height: '100%'}}
                     resizeMode="cover"
                 />
-                {/* data */}
+               
                 <MainInfo>
                     <LinearGradient
                         colors={['#FF4D00', '#FF9345']}
@@ -84,10 +84,10 @@ export default function EventDetails(props:any) {
                         borderTopLeftRadius: 30,
                         }}
                     />
-                    {/* caixa da data */}
+                
                     <MainData>
                         <DataBox>
-                            {/* integrar essa parte */}
+                          
                             <Data>21</Data>
                             <Month>Abr</Month>
                         </DataBox>
@@ -97,20 +97,20 @@ export default function EventDetails(props:any) {
                             <EventAddress>{eventDetails.street} {eventDetails.number}, {eventDetails.neighborhood} - {eventDetails.city}</EventAddress>
                         </View>
                     </MainData>
-                    {/* caixinha de comentario */}
+                  
                     <Icon name="message-square" size={24} color="#fff" style={{zIndex: 1, marginRight: "7.5%"}}/>
                 </MainInfo>
             </Header>
 
-            {/* view da parte de cima dos detalhes */}
+           
             <FollowEventContainer>
-                {/* bloco dos confirmados */}
+              
                 <PeopleFollowing>
                     <Icon name="users" size={24} color="#32CFE3"/>
                     <FollowingNumber>{eventDetails.participants} confirmados</FollowingNumber>
                 </PeopleFollowing>
 
-                {/* botão para participar do evento */}
+             
                 <View style={{width: '35%'}}>
                     { !buttonClicked ?
                     <FollowButton onPress={() => setButtonClicked(true)}><ButtonText>Participar</ButtonText></FollowButton>
@@ -119,12 +119,12 @@ export default function EventDetails(props:any) {
                 </View>
             </FollowEventContainer>
             
-            {/* detalhes do evento */}
+         
             <AllDetails>
                 <AllDetailsTitle>Detalhes do evento</AllDetailsTitle>
 
                 <DetailsContainer>
-                    {/* integrar essa parte depois */}
+                  
                     <DetailType>Criado por</DetailType>
                     <PromoterContainer>
                         <DetailData>{promoterName} </DetailData> 
@@ -149,7 +149,7 @@ export default function EventDetails(props:any) {
                     <DetailType>Descrição</DetailType>
                     <DetailData>{eventDetails.description}</DetailData>
                 </DetailsContainer>
-            </AllDetails>
+            </AllDetails> 
         </Container>
     );
 }

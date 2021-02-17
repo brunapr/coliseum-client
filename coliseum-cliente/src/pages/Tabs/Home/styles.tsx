@@ -3,47 +3,55 @@ import styled from 'styled-components/native';
 export const Content = styled.View `
     width: 100%;
     height: 100%;
-    padding: 0%;
 `;
 
 export const Header = styled.View `
     width: 100%;
-    height: 20%;
+    height: 18%;
     display: flex;
     margin-top: 0%;
     margin-bottom: 10%;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: flex-end;
 `;
 
 export const Body = styled.View `
     width: 100%;
     height: 100%;
     display: flex;
-    margin-top: 0%;
-    margin-bottom: 10%;
     flex-direction: column;
 `;
 
 export const DivTitle = styled.View `
     width: 100%;
-    height: 20%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     padding:10%;
    
 `;
 
 
-export const Scroll = styled.ScrollView `
+export const Scroll = styled.View `
     width: 100%;
-    height: 90%;
+    height: 100%;
     margin-left: 2%;
     margin-right: 5%;
+    margin-top: 5%;
+`;
+
+export const ScrollPopular = styled.View `
+    width: 100%;
+    height: 30%;
+    margin-left: 2%;
+    margin-right: 5%;
+    margin-top: 5%;
+
+    display: flex;
+    flex-direction: row;
 `;
 
 
@@ -51,13 +59,6 @@ export const Title = styled.Text `
     color: white;
     text-align: center;
     font-size: 28px;
-    font-weight: bold;
-`;
-
-export const P = styled.Text `
-    color: black;
-    text-align: start;
-    font-size: 1em;
     font-weight: bold;
 `;
 

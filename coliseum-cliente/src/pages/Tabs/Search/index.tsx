@@ -5,8 +5,7 @@ import { TouchableHighlight, View, Text } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import { Input } from '../../styles';
-
-import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent, Scroll } from './styles';
+import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent, Scroll, WrapResults } from './styles';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
@@ -16,8 +15,7 @@ import EventSmallCard from '../../../components/EventSmallCard/index';
 import Filter from '../../../components/Filter/index';
 
 import api from '../../../services/api';
-import { event } from 'react-native-reanimated';
-;
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface EditSearch {
     text: string
@@ -29,7 +27,7 @@ interface Event {
       name: string,
       city: string,
       date: string,
-
+      neighborhood: string,
     }
 }
 
@@ -103,9 +101,9 @@ export default function Search() {
                 }}
             />
                 <InputBox>
-                    <TouchableHighlight onPress={handleSubmit(onSubmit)}>
+                    <TouchableOpacity onPress={handleSubmit(onSubmit)}>
                       <Icon name="search" size={20} color="#535353" />
-                    </TouchableHighlight>
+                    </TouchableOpacity>
 
                     <Controller
                         control={control}
@@ -133,14 +131,14 @@ export default function Search() {
             }
 
             <Scroll>
-              {/* componente dos eventos */}
-              {searchResults?.map(searchResult => {
-                return(
-                  
-                            <EventSmallCard key={searchResult.event.id} name= {searchResult.event.name} date={searchResult.event.date} address={searchResult.event.city}> </EventSmallCard>
-                       
-                )
-              })}
+              <WrapResults>
+                {/* componente dos eventos */}
+                {searchResults?.map(searchResult => {
+                  return(
+                      <EventSmallCard key={searchResult.event.id} name={searchResult.event.name} date={searchResult.event.date} address={searchResult.event.neighborhood}/>
+                  )
+                })}
+              </WrapResults>
             </Scroll>
         </Content>
     );

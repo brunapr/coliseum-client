@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import img from '../../../assets/image1.png';
 
 export const Card = styled.View `
     background: white;
@@ -20,9 +19,6 @@ export const Card = styled.View `
 
 
 export const DivImage = styled.View `
-    background-image: url(${img});
-    background-size: cover;
-    background-repeat: no-repeat;
 
     width: 20%;
     height: 100%;
@@ -58,7 +54,6 @@ export const DivEventName = styled.View `
   
     width: 95%;
     height: auto;
-    margin-left: 1%;
 
     display: flex;
     flex-direction: row;
@@ -94,8 +89,7 @@ export const DivEventAddress = styled.View `
 
 export const EventName = styled.Text `
     color: black;
-    text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 
 

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 
 import api from '../../../services/api';
 
-import { ScrollView } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 
-import { Header, Body, Scroll, DivTitle, Title, SubTitle, Content  } from './styles';
+import { Header, Body, Scroll, DivTitle, Title, SubTitle, Content, ScrollPopular  } from './styles';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -46,7 +46,6 @@ export default function Home() {
 
     return(
         <Content>
-            <ScrollView>
                 <Header>    
                     <LinearGradient
                         colors={['#FF4D00', '#FF9345']}
@@ -74,41 +73,33 @@ export default function Home() {
 
                     <SubTitle>Eventos populares</SubTitle>
 
-                    <Scroll
-                        horizontal = {true} 
-                    >
-
-                        {/* {
-                            events.map(event => {
-                                return (
-                                    <EventCard key={event.id} name= {event.name} date={event.date} address={event.city} > </EventCard>
-                                );
-                            })
-                        } */}
-
+                    <ScrollPopular>
+                        { events.map(event => {
+                            return(
+                                <EventCard key={event.id} name={event.name} date={event.date} address={event.city}></EventCard>
+                            );
+                        })}
                         
-                    </Scroll>
+                    </ScrollPopular>
                     
 
                     <SubTitle>Outros eventos</SubTitle>
 
-                    <Scroll>
-
-                    {/* {
-                    events.map(event => {
-                        return (
-                            <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city}> </EventSmallCard>
-                        );
-                    })
-                    }   */}
-
-
-                    </Scroll>
+                    <ScrollView>
+                        <Scroll>
+                        {
+                        events.map(event => {
+                            return (
+                                <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city}> </EventSmallCard>
+                            );
+                        })
+                        }  
+                        </Scroll>
+                    </ScrollView>
                  
                 </Body>
          
                 
-            </ScrollView>
         </Content>
     );
 }
