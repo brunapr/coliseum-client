@@ -2,23 +2,24 @@ import styled, { css } from 'styled-components/native';
 
 export const Content = styled.View `
     width: 100%;
-    height: 100vh;
+    height: 100%;
 `;
 
 export const Header = styled.View `
     width: 100%;
-    height: 10vh;
+    height: 12%;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 `;
 
 export const InputBox = styled.View `
     width: 70%;
     background-color: white;
     padding-left: 4%;
+    margin-bottom: 5%;
 
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 40px;
@@ -32,8 +33,9 @@ export const FilterBox = styled.TouchableHighlight `
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5%;
 
-    margin-left: 5%;
+    margin-left: 8%;
     padding: 1%;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -55,18 +57,21 @@ export const SearchText = styled.Text `
 
 export const FilterComponent = styled.View `
     position: absolute;
-    top: 25%;
-    left: 15%;
+    left: 50%;
+    top: 30%;
+    margin-left: -30%;
+
+    width: 90%;
+    height: auto;
     z-index: 1;
 `;
 
   export const Scroll = styled.View `
         width: 100%;
-        height: 75vh;
+        height: 75%;
         margin-top: 10%;
-        overflow-y: scroll;
 
         display: flex;
-        flex-direction: center;
+        flex-direction: column;
         align-items: center;
     `;

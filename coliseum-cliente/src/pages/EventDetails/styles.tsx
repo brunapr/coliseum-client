@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import img from '../../../assets/unnamed.jpg';
 
 export const Container = styled.View `
     display: flex;
@@ -15,26 +14,21 @@ export const BackIcon = styled.TouchableOpacity `
 `;
 
 export const Header = styled.View `
-    width: 100vw;
-    height: 65vw;
+    width: 100%;
+    height: 40%;
 `;
 
 export const Photo = styled.View `
-    width: 100vw;
-    height: 60vw;
-
-    background-image: url(${img});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    width: 100%;
+    height: 60%;
 `;
 
 export const MainInfo = styled.View `
     position: absolute;
     bottom: 0;
 
-    width: 100vw;
-    height: 18vw;
+    width: 100%;
+    height: 25%;
 
     display: flex;
     flex-direction: row;
@@ -52,8 +46,8 @@ export const MainData = styled.View `
 `;
 
 export const DataBox = styled.View `
-    width: 12vw;
-    height: 12vw;
+    width: 15%;
+    height: 50%;
     border-radius: 10px;
     margin-right: 2%;
 
@@ -68,27 +62,28 @@ export const DataBox = styled.View `
 export const Data = styled.Text `
     color: #FF4D00;
     font-weight: bold;
-    font-size: 120%;
-    line-height: 15px;
+    font-size: 20px;
+    
 `;
 export const Month = styled.Text `
     color: #FF4D00;
     font-style: italic;
-    font-size: 80%;
+    font-size: 16px;
+    line-height: 15px;
 `;
 
 export const EventTitle = styled.Text `
     color: #fff;
     font-weight: bold;
-    align-self: start;
+    align-self: flex-start;
 `;
 
 export const EventAddress = styled.Text `
     color: #fff;
     font-weight: 200;
-    font-size: 80%;
+    font-size: 14px;
     font-style: italic;
-    line-height: 12px;
+    line-height: 15px;
 `;
 
 export const FollowEventContainer = styled.View `
@@ -109,7 +104,7 @@ export const PeopleFollowing = styled.View `
 
 export const FollowingNumber = styled.Text `
     font-style: italic;
-    margin-left: 2%;
+    margin-left: 5%;
 `;
 
 export const FollowButton = styled.TouchableOpacity `
@@ -138,14 +133,14 @@ export const FollowButtonClicked = styled.TouchableOpacity `
 export const ButtonText = styled.Text `
     color: #32CFE3;
     font-weight: bold;
-    font-size: 90%;
+    font-size: 14px;
     letter-spacing: 0.5px;
 `;
 
 export const ButtonTextClicked = styled.Text `
     color: #fff;
     font-weight: bold;
-    font-size: 90%;
+    font-size: 14px;
     letter-spacing: 0.5px;
 `;
 
@@ -158,7 +153,7 @@ export const AllDetails = styled.View `
 `;
 
 export const AllDetailsTitle = styled.Text `
-    font-size: 100%;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 3%;
 `;
@@ -170,20 +165,21 @@ export const DetailsContainer = styled.View `
 export const DetailType = styled.Text `
     color: #5A5A5A;
     font-style: italic;
-    font-weight: 600;
-    font-size: 85%;
+    font-weight: bold;
+    font-size: 16px;
     letter-spacing: -0.5px;
 `;
 
 export const DetailData = styled.Text `
     width: auto;
     color: #5A5A5A;
-    font-size: 95%;
+    font-size: 18px;
 `;
 
 export const PromoterContainer = styled.View `
     display: flex;
     flex-direction: row;
+    align-items: center;
 `;
 
 export const InfoButton = styled.TouchableOpacity `

@@ -2,12 +2,8 @@ import styled from 'styled-components/native';
 import img from '../../../assets/group.png';
 
 export const Container = styled.View `
-    width: 100vw;
-    height: 100vh;
-
-    // background-image: url(${img});
-    // background-size: cover;
-    // background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
 
     display: flex;
     justify-content: center;
@@ -16,7 +12,7 @@ export const Container = styled.View `
 
 export const WhiteBox = styled.View `
     width: 80%;
-    height: 65vh;
+    height: 60%;
     background-color: rgba(255,255,255,0.5);
     border-radius: 20px;
     padding: 8%;
@@ -32,13 +28,13 @@ export const Header = styled.View `
 `;
 
 export const Title = styled.Text `
-    font-size: 160%;
+    font-size: 36px;
     font-weight: bold;
     color: #FF4D00;
 `;
 
 export const SubTitle = styled.Text `
-    font-size: 130%;
+    font-size: 26px;
     color: #FF4D00;
 `;
 
@@ -64,7 +60,6 @@ export const Input = styled.TextInput `
     opacity: 0.7;
 
     border: 1px solid #FFFFFF;
-    box-sizing: border-box;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
 `;
@@ -87,7 +82,7 @@ export const LoginButton = styled.TouchableOpacity `
 export const LoginText = styled.Text `
     color: white;
     font-weight: bold;
-    font-size: 110%;
+    font-size: 20px;
 `;
 
 export const RegisterButton = styled.TouchableOpacity `
@@ -106,7 +101,7 @@ export const RegisterButton = styled.TouchableOpacity `
 export const RegisterText = styled.Text `
     color: #069DB1;
     font-weight: bold;
-    font-size: 100%;
+    font-size: 15px;
 `;
 
 export const BackIcon = styled.TouchableOpacity `

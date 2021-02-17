@@ -23,12 +23,12 @@ export const PhoneContainer = styled.View `
 export const Square = styled.View `
     position: absolute;
     left: -10px;
-    width: 6vw;
-    height: 20%;
+    width: 10%;
+    height: 15%;
     background-color: #000;
 `;
 
 export const PhoneText = styled.Text `
     color: white;
-    font-size: 0.8rem;
+    font-size: 14px;
 `;

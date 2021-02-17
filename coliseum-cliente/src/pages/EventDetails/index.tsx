@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
-import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, Image } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import { BiCommentDetail, BiGroup } from "react-icons/bi";
-import { FaChevronCircleLeft, FaInfoCircle } from 'react-icons/fa';
+import Icon from 'react-native-vector-icons/Feather';
 
 import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType, BackIcon, PromoterContainer, InfoButton } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
 import Phone from '../../components/PromoterPhone/index';
+import img from '../../../assets/unnamed.jpg';
 
 import api from '../../services/api';
 
@@ -26,14 +25,14 @@ interface EventData {
     participants: number,
 }
 
-export default function EventDetails() {
+export default function EventDetails(props:any) {
 
+    const event_id = props.route.params.eventId;
     const [ buttonClicked, setButtonClicked ] = useState(false);
     const [ infoClicked, setInfoClicked ] = useState(false);
 
     // nao vai precisar desses dois de baixo depois pq os dois ids vao vir direto 
     // entao soh teria que chamar como props.event_id e props.user_id
-    const [ event_id, setEventId ] = useState(1); //preciso depois passar o id pela home, precisa ser recebido antes de mandar pra useeffect
     const [ user_id , setUserId ] = useState(1); //seta o userId uma vez que o phone do promoter nao vem na resposta
 
     const [ eventDetails, setEventDetails ] = useState<EventData>();
@@ -46,6 +45,7 @@ export default function EventDetails() {
         api.get(`api/event/${event_id}`).then( response => {
             setEventDetails(response.data)
             setPromoterName(response.data.user.name)
+            setUserId(response.data.user.id)
         })
 
         api.get(`api/user/${user_id}`).then( response => {
@@ -59,13 +59,17 @@ export default function EventDetails() {
     
     return(
         <Container>
-            <BackIcon onPress={() => {navigation.navigate('Home'); document.location.reload(true);}}>
-                <FaChevronCircleLeft size={36} color={'#32CFE3'}/>
+            <BackIcon onPress={() => {navigation.navigate('Home')}}>
+                <Icon name="arrow-left-circle" size={36} color="#32CFE3" />
             </BackIcon>
             {/* foto e data */}
             <Header>
                 {/* foto */}
-                <Photo/>
+                <Image
+                    source={img}
+                    style={{width: '100%', height: '100%'}}
+                    resizeMode="cover"
+                />
                 {/* data */}
                 <MainInfo>
                     <LinearGradient
@@ -88,13 +92,13 @@ export default function EventDetails() {
                             <Month>Abr</Month>
                         </DataBox>
                         {/* nome e endereço */}
-                        <View style={{width:'80%', height:'12vw'}}>
+                        <View style={{width:'80%', height:'12%'}}>
                             <EventTitle>{eventDetails.name}</EventTitle>
                             <EventAddress>{eventDetails.street} {eventDetails.number}, {eventDetails.neighborhood} - {eventDetails.city}</EventAddress>
                         </View>
                     </MainData>
                     {/* caixinha de comentario */}
-                    <BiCommentDetail style={{zIndex: 1, marginRight: "7.5%"}} color="#fff" size={24}/>
+                    <Icon name="message-square" size={24} color="#fff" style={{zIndex: 1, marginRight: "7.5%"}}/>
                 </MainInfo>
             </Header>
 
@@ -102,7 +106,7 @@ export default function EventDetails() {
             <FollowEventContainer>
                 {/* bloco dos confirmados */}
                 <PeopleFollowing>
-                    <BiGroup size={24} color={'#32CFE3'}/>
+                    <Icon name="users" size={24} color="#32CFE3"/>
                     <FollowingNumber>{eventDetails.participants} confirmados</FollowingNumber>
                 </PeopleFollowing>
 
@@ -125,7 +129,7 @@ export default function EventDetails() {
                     <PromoterContainer>
                         <DetailData>{promoterName} </DetailData> 
                         <InfoButton onPress={() => setInfoClicked(!infoClicked)}>
-                            <FaInfoCircle size={20}/>
+                            <Icon name="info" size={20} color="#000"/>
                         </InfoButton>
                         { infoClicked && <Phone phone={promoterPhone}/> }
                     </PromoterContainer>

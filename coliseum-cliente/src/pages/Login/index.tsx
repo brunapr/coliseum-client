@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, TextInput, ImageBackground } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { Text, ImageBackground } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import { FaChevronCircleLeft } from 'react-icons/fa';
+import Icon from 'react-native-vector-icons/Feather';
+import { useNavigation } from '@react-navigation/native';
 
 import api from '../../services/api';
 
@@ -15,21 +17,24 @@ interface FormData {
     password: string;
 }
 
-// const img = { uri: "../../../assets/group.png" };
-
 export default function Login() {
 
     const { control, handleSubmit, errors } = useForm({ mode: 'onTouched' });
     const onSubmit = (data: FormData) => { 
         console.log(data)
         api.post('api/login', data).then(response => {
-            console.log(response.data.message)
-            alert('Login feito com sucesso!')
-            localStorage.setItem('token', response.data.token)
-            document.location.reload(true);
-            navigation.navigate('Home')
+            console.log(response.data.message);
+            alert('Login feito com sucesso!');
+            
+            const token = response.data.token;
+
+            AsyncStorage.setItem('token', token);
+
+            navigation.navigate('Home');
         }, 
         (error => ('Login não pode ser concluído.'))) };
+
+        
 
     const onError = (errors: Object) => { console.log(errors) };
     const navigation = useNavigation();
@@ -38,8 +43,8 @@ export default function Login() {
     return (
         <ImageBackground source={img} style={{flex: 1}}>
         <Container>
-            <BackIcon onPress={() => {navigation.navigate('Home'); document.location.reload(true);}}>
-                <FaChevronCircleLeft size={36} color={'#fff'}/>
+            <BackIcon onPress={() => {navigation.navigate('Home');}}>
+                <Icon name="arrow-left-circle" size={35} color="#fff" />
             </BackIcon>
             <WhiteBox>
                 <Header>

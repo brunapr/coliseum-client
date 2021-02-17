@@ -7,7 +7,9 @@ export default function EventSmallCard(props:any) {
 
     return (
         < Card>
+            <Text>
             <DivImage> </DivImage>
+            </Text>
             <DivEventDetails>
                 <DivEventName> <EventName> {props.name} </EventName> </DivEventName>
                 <DivEventDate> <EventDate> {props.date} </EventDate> </DivEventDate>

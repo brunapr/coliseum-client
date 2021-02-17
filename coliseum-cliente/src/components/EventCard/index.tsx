@@ -9,14 +9,13 @@ export default function EventCard(props:any) {
     return (
 
         <Card >
-
-            <DivImage >
-            
-        
-            </DivImage>
+            <Text>
+                <DivImage />
+            </Text>
             <DivEventDetails>
                 <DivEventInformation>
-                    <DivEventName> <EventName>{props.name}</EventName></DivEventName> <DivEventDate> <EventDate>{props.date}</EventDate></DivEventDate>
+                    <DivEventName> <EventName>{props.name}</EventName></DivEventName> 
+                    <DivEventDate> <EventDate>{props.date}</EventDate></DivEventDate>
                 </DivEventInformation>
                 
                 <DivEventAddress> <EventAddress> {props.address} </EventAddress> </DivEventAddress>

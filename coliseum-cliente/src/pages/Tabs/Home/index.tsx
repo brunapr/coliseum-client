@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import api from '../../../services/api';
 
 import { ScrollView } from 'react-native';
 
-
-import { Header, Body, p, Scroll, DivTitle, Title, SubTitle, Content  } from './styles';
+import { Header, Body, Scroll, DivTitle, Title, SubTitle, Content  } from './styles';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-
 
 import { useNavigation } from '@react-navigation/native';
 
 import EventCard from '../../../components/EventCard/index';
 import EventSmallCard from '../../../components/EventSmallCard/index';
-import { useEffect } from 'react';
+import EventDetails from '../../EventDetails/index';
 
 Home.navigationOptions = {
     header: null,
@@ -25,7 +23,6 @@ interface Event {
     name: string;
     city:string;
     date:string;
- 
 }
 
 export default function Home() {
@@ -41,13 +38,11 @@ export default function Home() {
         api.get('api/events').then(response => {
             setEvents(response.data);
         })
-    });
+    }, []);
 
     function handleNavigateToEventDetails(id: number) {
         navigation.navigate('EventDetails', { id });
     }
-
-
 
     return(
         <Content>
@@ -68,7 +63,6 @@ export default function Home() {
                         <DivTitle>
                         <Title>Encontre eventos perto de você</Title>
                         
-                        <img src="/../../../../assets/group.png" alt=""/>
                         </DivTitle>
                         
                         
@@ -84,14 +78,13 @@ export default function Home() {
                         horizontal = {true} 
                     >
 
-                        {
+                        {/* {
                             events.map(event => {
                                 return (
                                     <EventCard key={event.id} name= {event.name} date={event.date} address={event.city} > </EventCard>
-                                   
                                 );
                             })
-                        }
+                        } */}
 
                         
                     </Scroll>
@@ -101,13 +94,13 @@ export default function Home() {
 
                     <Scroll>
 
-                    {
+                    {/* {
                     events.map(event => {
                         return (
                             <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city}> </EventSmallCard>
                         );
                     })
-                    }  
+                    }   */}
 
 
                     </Scroll>

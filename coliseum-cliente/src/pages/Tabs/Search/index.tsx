@@ -9,7 +9,7 @@ import { Input } from '../../styles';
 import { Header, Content, InputBox, FilterBox, TextBox, SearchText, FilterComponent, Scroll } from './styles';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import { BiSlider, BiSearch } from 'react-icons/bi';
+import Icon from 'react-native-vector-icons/Feather';
 
 import EventSmallCard from '../../../components/EventSmallCard/index';
 
@@ -33,39 +33,6 @@ interface Event {
     }
 }
 
-function useComponentVisible(initialIsVisible: any) {
-    const [isComponentVisible, setIsComponentVisible] = useState(
-      initialIsVisible
-    );
-    const ref = useRef(null);
-  
-    const handleHideDropdown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsComponentVisible(false);
-      }
-    };
-  
-    const handleClickOutside = (event: { target: any; }) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setIsComponentVisible(false);
-      }
-    };
-  
-    useEffect(() => {
-
-
-      document.addEventListener("keydown", handleHideDropdown, true);
-      document.addEventListener("click", handleClickOutside, true);
-      return () => {
-        document.removeEventListener("keydown", handleHideDropdown, true);
-        document.removeEventListener("click", handleClickOutside, true);
-      };
-    });
-  
-    return { ref, isComponentVisible, setIsComponentVisible };
-}
-
-
 
 export default function Search() {
 
@@ -78,7 +45,7 @@ export default function Search() {
     });
 
     // Faz o componente de filtro sumir quando clicado fora
-    const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+    const [ isVisible, setIsVisible ] = useState(false);
 
     // Faz o View da pesquisa aparecer
     const [ searchText, setSearchText ] = useState(false);
@@ -91,12 +58,13 @@ export default function Search() {
 
     // O que será passado para o filtro
     const [checked, setChecked] = useState('first');
+
     function handleFilterChange(changeFilter:any) {
       setChecked(changeFilter)
     }
 
     function handleFilterClose(closeFilter:any) {
-      setIsComponentVisible(closeFilter)
+      setIsVisible(closeFilter)
     }
 
     const { control, handleSubmit } = useForm({ mode: 'onTouched' });
@@ -116,9 +84,9 @@ export default function Search() {
 
     return(
         <Content>
-            <FilterComponent ref={ref}>
-                {isComponentVisible &&
-                    <Filter filterChange={handleFilterChange} parentChange={checked} filterClose={handleFilterClose} childClose={isComponentVisible}/> 
+            <FilterComponent>
+                {isVisible &&
+                    <Filter filterChange={handleFilterChange} parentChange={checked} filterClose={handleFilterClose} childClose={isVisible}/> 
                 }
             </FilterComponent>
             <Header>
@@ -136,7 +104,7 @@ export default function Search() {
             />
                 <InputBox>
                     <TouchableHighlight onPress={handleSubmit(onSubmit)}>
-                      <BiSearch color="#535353" size={20}/>
+                      <Icon name="search" size={20} color="#535353" />
                     </TouchableHighlight>
 
                     <Controller
@@ -152,8 +120,8 @@ export default function Search() {
                         defaultValue=''
                     />
                 </InputBox>
-                <FilterBox onPress={() => setIsComponentVisible(true)}>
-                    <BiSlider color="#fff" size={24}/>
+                <FilterBox onPress={() => setIsVisible(true)}>
+                    <Icon name="sliders" size={24} color="#fff" />
                 </FilterBox> 
             </Header>
             { searchText && 

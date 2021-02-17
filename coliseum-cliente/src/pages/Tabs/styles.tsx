@@ -20,7 +20,7 @@ export const TabBar = styled.View `
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 8vh;
+    height: 8%;
     background-color: white;
    
 
