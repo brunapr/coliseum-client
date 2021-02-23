@@ -108,3 +108,9 @@ export const EventAddress = styled.Text `
     font-size: 14px;
    
 `;
+
+export const TouchableCard = styled.TouchableOpacity `
+
+    height: 250px;
+    
+`;

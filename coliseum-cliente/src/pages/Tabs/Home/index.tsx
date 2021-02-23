@@ -72,7 +72,6 @@ export default function Home() {
                 <Body>
 
                     <SubTitle>Eventos populares</SubTitle>
-                <Fragment>
                     <ScrollPopular>
                         { events.map(event => {
                             return(
@@ -81,7 +80,6 @@ export default function Home() {
                         })}
                         
                     </ScrollPopular>
-                </Fragment>
 
                     <SubTitle>Outros eventos</SubTitle>
 

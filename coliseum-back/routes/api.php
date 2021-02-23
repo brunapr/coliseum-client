@@ -6,6 +6,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PromoterController;
 use App\Http\Controllers\PassportController;
+use App\Http\Controllers\CommentaryController;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Promoter;
 
@@ -29,6 +30,7 @@ Route::get('events', [EventController::class, 'index']);
 Route::get('event/{id}', [EventController::class, 'show']);
 Route::put('event/{id}', [EventController::class, 'update']);
 Route::post('search', [EventController::class, 'searchEvent']);
+Route::get('event/users/{id}', [EventController::class, 'getUsersParticipating']);
 
 //user Routes
 Route::post('user', [UserController::class, 'store']);
@@ -47,6 +49,10 @@ Route::delete('promoter/{id}', [PromoterController::class, 'destroy']);
 Route::post('register', [PassportController::class, 'register']);
 Route::post('login', [PassportController::class, 'login']);
 
+//commentary routes
+Route::get('event/commentaries/{id}', [CommentaryController::class, 'getEventComments']);
+Route::delete('commentary/{id}', [CommentaryController::class, 'destroy']);
+
 Route::group(['middleware' => 'auth:api'], function() {
     
     Route::post('event', [EventController::class, 'store'])->middleware(Promoter::class);
@@ -55,5 +61,11 @@ Route::group(['middleware' => 'auth:api'], function() {
     //admin routes
     Route::delete('event/{id}', [EventController::class, 'destroy'])->middleware(Admin::class);
     //password route
-    Route::put('password', [userController::class, 'changePassword']);
+    Route::put('password', [UserController::class, 'changePassword']);
+    //user_events routes
+    Route::get('user/events', [UserController::class, 'getUserEvents']);
+    Route::get('participate/event/{id}', [UserController::class, 'participate']);
+    Route::get('block/event/{id}', [UserController::class, 'stopParticipating']);
+    //commentary routes
+    Route::post('commentary', [CommentaryController::class, 'store']);
 });

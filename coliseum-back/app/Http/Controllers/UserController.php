@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use DB;
 
 class UserController extends Controller
 {
@@ -96,8 +98,50 @@ class UserController extends Controller
             $user->password = Hash::make($request->new_password);
             $user->save();
         } else {
-            return response()->json('wrong password', 200);
+            return response()->json('wrong password', 500);
         }
         return response()->json($user, 200); 
+    }
+
+    /**
+     * participate in an event
+     * @param int $id event_id
+     */
+    public function participate($id) {
+        $user = Auth::user();
+        $event = Event::findOrFail($id);
+        $user->participating()->attach($event->id);
+        $event->participants = DB::table('participating')->where('event_id', $event->id)->count();
+        $event->save();
+
+        return response()->json('participating', 200);
+    }
+
+    /**
+     * stop participating in an event
+     * @param int $id event_id
+     */
+    public function stopParticipating($id) {
+        $user = Auth::user();
+        $event = Event::findOrFail($id);
+        $user->participating()->detach($event->id);
+        $event->participants = DB::table('participating')->where('event_id', $event->id)->count();
+        $event->save();
+
+        return response()->json('stopped participating', 200);
+    }
+
+    /**
+     * get all events an user is participating
+     */
+    public function getUserEvents() {
+        $user = Auth::user();
+        $events = $user->participating;
+
+        if ($events == null) {
+            return response()->json("user is not participating in any event", 404);
+        }
+
+        return response()->json($events, 200);
     }
 }

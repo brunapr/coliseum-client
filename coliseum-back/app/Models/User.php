@@ -87,4 +87,8 @@ class User extends Authenticatable
     public function promoter() {
         return $this->hasOne(Promoter::class);
     }
+
+    public function participating() {
+        return $this->belongsToMany(Event::class, 'participating');
+      }
 }

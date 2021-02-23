@@ -3,28 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Commentary;
+use App\Models\Event;
 use Illuminate\Http\Request;
+use Auth;
 
 class CommentaryController extends Controller
-{
+{   
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * get all the comments for an event
+     * @param int $id
      */
-    public function index()
-    {
-        //
-    }
+    public function getEventComments($id) {
+        $event = Event::findOrFail($id);
+        $comments = $event->comments;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        if ($comments == null) {
+            return response()->json("no comments found", 404);
+        }
+
+        return response()->json($comments, 200);
     }
 
     /**
@@ -35,41 +32,18 @@ class CommentaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $commentary = new Commentary;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Commentary  $commentary
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Commentary $commentary)
-    {
-        //
-    }
+        $user = Auth::user();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Commentary  $commentary
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Commentary $commentary)
-    {
-        //
-    }
+        $commentary->user_id = $user->id;
+        $commentary->event_id = $request->event_id;
+        $commentary->commentary = $request->commentary;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Commentary  $commentary
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Commentary $commentary)
-    {
-        //
+        $commentary->save();
+
+        return response()->json($commentary, 200);
+
     }
 
     /**
@@ -78,8 +52,10 @@ class CommentaryController extends Controller
      * @param  \App\Models\Commentary  $commentary
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commentary $commentary)
+    public function destroy($id)
     {
-        //
+        Commentary::destroy($id);
+        return response()->json("comentario deletado", 200);
+
     }
 }

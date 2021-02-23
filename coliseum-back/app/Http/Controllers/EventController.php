@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class EventController extends Controller
 {
@@ -44,7 +45,8 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+
         $event = Event::findOrFail($id);
         $event->load('user');
         return response()->json($event, 200);
@@ -100,5 +102,19 @@ class EventController extends Controller
         }
             return response()->json($results,200);
 
+    }
+
+    /**
+     * get the users that are participating
+     */
+    public function getUsersParticipating($id) {
+        $event = Event::findOrFail($id);
+        $users = $event->participating;
+
+        if ($users == null) {
+            return response()->json("no users are taking part in this event", 404);
+        }
+
+        return response()->json($users, 200);
     }
 }

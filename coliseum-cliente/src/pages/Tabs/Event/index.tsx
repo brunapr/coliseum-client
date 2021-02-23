@@ -95,7 +95,7 @@ export default function Event(props:any) {
                        {
                         events.map(event => {
                             return (
-                                <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}> </EventSmallCard>
+                                <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}></EventSmallCard>
                             );
                         })
                         }

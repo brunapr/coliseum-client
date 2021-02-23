@@ -121,3 +121,10 @@ export const EventAddress = styled.Text `
     
 `;
 
+export const TouchableCard = styled.TouchableOpacity `
+
+    height: 220px;
+    width: 350px;
+    
+`;
+

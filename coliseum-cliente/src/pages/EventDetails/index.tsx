@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Phone from '../../components/PromoterPhone/index';
 import img from '../../../assets/unnamed.jpg';
-
+import { user_token, useAuth } from '../../services/auth';
 import api from '../../services/api';
 
 interface EventData {
@@ -34,16 +34,42 @@ export default function EventDetails(props:any) {
     // nao vai precisar desses dois de baixo depois pq os dois ids vao vir direto 
     // entao soh teria que chamar como props.event_id e props.user_id
     const [ user_id , setUserId ] = useState(1); //seta o userId uma vez que o phone do promoter nao vem na resposta
-
+    const [ authorization, setAuthorization ] = useState("");
     const [ eventDetails, setEventDetails ] = useState<EventData>();
     const [ promoterPhone, setPromoterPhone ] = useState();
     const [ promoterName, setPromoterName ] = useState();
 
     const navigation = useNavigation();
 
+    function participate(id:any){
 
+        api.get(`api/participate/event/${id}`, { headers: { Authorization: authorization } }).then( response => {
+            try{
+                setButtonClicked(true)
+            } catch{
+                setButtonClicked(false)
+            }
+        }) 
+    }
+
+    function stopParticipate(id:any){
+        api.get(`api/block/event/${id}`, { headers: { Authorization: authorization } }).then( response => {
+            try{
+                setButtonClicked(false)
+            } catch{
+                setButtonClicked(true)
+            }
+        }) 
+    }
+
+    user_token().then(value => {
+        setAuthorization(value);
+    });
 
     useEffect(() => {
+        // if(eventDetails.){
+
+        // }
         api.get(`api/event/${event_id}`).then( response => {
             setEventDetails(response.data)
             setPromoterName(response.data.user.name)
@@ -53,7 +79,7 @@ export default function EventDetails(props:any) {
         api.get(`api/user/${user_id}`).then( response => {
             setPromoterPhone(response.data.promoter.phone)
         })
-    }, [event_id])
+    }, [event_id, eventDetails])
 
     if (!eventDetails) {
         return <Container style={{marginTop: '50%'}}><Text style={{color: '#FF4D00', fontSize: 24}}>Carregando...</Text></Container>;
@@ -115,8 +141,8 @@ export default function EventDetails(props:any) {
              
                 <View style={{width: '35%'}}>
                     { !buttonClicked ?
-                    <FollowButton onPress={() => setButtonClicked(true)}><ButtonText>Participar</ButtonText></FollowButton>
-                    : <FollowButtonClicked onPress={() => setButtonClicked(false)}><ButtonTextClicked>Participando</ButtonTextClicked></FollowButtonClicked>
+                    <FollowButton onPress={() => {participate(event_id)}}><ButtonText>Participar</ButtonText></FollowButton>
+                    : <FollowButtonClicked onPress={() => stopParticipate(event_id)}><ButtonTextClicked>Participando</ButtonTextClicked></FollowButtonClicked>
                     }
                 </View>
             </FollowEventContainer>
