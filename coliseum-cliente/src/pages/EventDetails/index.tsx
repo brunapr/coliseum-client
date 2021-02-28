@@ -4,12 +4,12 @@ import { View, Text, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { Container, Photo, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType, BackIcon, PromoterContainer, InfoButton } from './styles';
+import { Container, Header, MainInfo, DataBox, MainData, Data, Month, EventTitle, EventAddress, FollowEventContainer, PeopleFollowing, FollowingNumber, FollowButton, FollowButtonClicked, ButtonText, ButtonTextClicked, AllDetails, AllDetailsTitle, DetailsContainer, DetailData, DetailType, BackIcon, PromoterContainer, InfoButton } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
 import Phone from '../../components/PromoterPhone/index';
 import img from '../../../assets/unnamed.jpg';
-import { user_token, useAuth } from '../../services/auth';
+import { user_token } from '../../services/auth';
 import api from '../../services/api';
 
 interface EventData {
@@ -31,9 +31,7 @@ export default function EventDetails(props:any) {
     const [ buttonClicked, setButtonClicked ] = useState(false);
     const [ infoClicked, setInfoClicked ] = useState(false);
 
-    // nao vai precisar desses dois de baixo depois pq os dois ids vao vir direto 
-    // entao soh teria que chamar como props.event_id e props.user_id
-    const [ user_id , setUserId ] = useState(1); //seta o userId uma vez que o phone do promoter nao vem na resposta
+    const [ user_id , setUserId ] = useState(); 
     const [ authorization, setAuthorization ] = useState("");
     const [ eventDetails, setEventDetails ] = useState<EventData>();
     const [ promoterPhone, setPromoterPhone ] = useState();
@@ -42,14 +40,12 @@ export default function EventDetails(props:any) {
     const navigation = useNavigation();
 
     function participate(id:any){
-
         api.get(`api/participate/event/${id}`, { headers: { Authorization: authorization } }).then( response => {
-            try{
-                setButtonClicked(true)
-            } catch{
-                setButtonClicked(false)
-            }
-        }) 
+            setButtonClicked(true)
+        }, (error => {
+            setButtonClicked(false)
+            alert("Parece que tivemos um problema. Tente mais tarde.")
+        }))
     }
 
     function stopParticipate(id:any){
@@ -58,6 +54,7 @@ export default function EventDetails(props:any) {
                 setButtonClicked(false)
             } catch{
                 setButtonClicked(true)
+                alert("Parece que tivemos um problema. Tente mais tarde.")
             }
         }) 
     }
@@ -67,9 +64,6 @@ export default function EventDetails(props:any) {
     });
 
     useEffect(() => {
-        // if(eventDetails.){
-
-        // }
         api.get(`api/event/${event_id}`).then( response => {
             setEventDetails(response.data)
             setPromoterName(response.data.user.name)

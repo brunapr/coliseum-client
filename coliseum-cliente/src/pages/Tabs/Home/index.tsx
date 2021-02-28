@@ -1,10 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import api from '../../../services/api';
 
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
-import { Header, Body, Scroll, DivTitle, Title, SubTitle, Content, ScrollPopular  } from './styles';
+import { Header, Body, DivTitle, Title, SubTitle, Content } from './styles';
 import { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -61,10 +61,7 @@ export default function Home() {
                     >
                         <DivTitle>
                         <Title>Encontre eventos perto de você</Title>
-                        
                         </DivTitle>
-                        
-                        
                     </LinearGradient>           
 
                            
@@ -72,29 +69,28 @@ export default function Home() {
                 <Body>
 
                     <SubTitle>Eventos populares</SubTitle>
-                    <ScrollPopular>
-                        { events.map(event => {
-                            return(
-                                <EventCard key={event.id} name={event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}></EventCard>
-                            );
-                        })}
-                        
-                    </ScrollPopular>
+                    <View>
+                        <ScrollView horizontal={true}>
+                            { events.map(event => {
+                                return(
+                                    <EventCard key={event.id} name={event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}></EventCard>
+                                );
+                            })}
+                        </ScrollView>
+                    </View>
 
                     <SubTitle>Outros eventos</SubTitle>
 
-                    <ScrollView>
-                        <Scroll>
-                        {
-                        events.map(event => {
-                            return (
-                                <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}> </EventSmallCard>
-                            );
-                        })
-                        }  
-                        </Scroll>
-                    </ScrollView>
-                 
+                    <View>
+                        <ScrollView>
+                            { events.map(event => {
+                                return (
+                                    <EventSmallCard key={event.id} name= {event.name} date={event.date} address={event.city} onPress={()=>{handleNavigateToEventDetails(event.id)}}> </EventSmallCard>
+                                );
+                            })}  
+                        </ScrollView>
+                    </View>
+
                 </Body>
          
                 

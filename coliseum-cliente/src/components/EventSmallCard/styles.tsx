@@ -4,14 +4,12 @@ export const Card = styled.View `
     background: white;
 
     width: 78%;
-    height: 25%;
+    height: 100%;
 
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 
-    margin-top: 3%;
-    margin-bottom: 5%;
     margin-left: 10%;
 
     border-radius:30px;
@@ -110,7 +108,6 @@ export const EventAddress = styled.Text `
 `;
 
 export const TouchableCard = styled.TouchableOpacity `
-
-    height: 250px;
-    
+    height: 25%;
+    margin-bottom: 5%
 `;

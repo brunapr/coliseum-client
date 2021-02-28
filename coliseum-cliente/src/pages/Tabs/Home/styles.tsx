@@ -65,8 +65,8 @@ export const Title = styled.Text `
 
 export const SubTitle = styled.Text `
     font-weight: bold;
-    font-size: 24px;
+    font-size: 22px;
+    margin: 5% 0 5% 5%;
     opacity: 0.5;
     width: 100%;
-    margin-left: 5%;
 `;
