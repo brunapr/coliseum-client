@@ -18,7 +18,7 @@ export const Header = styled.View `
 
 export const Body = styled.ScrollView `
     width: 100%;
-    height: 100%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     

@@ -6,6 +6,7 @@ export const Content = styled.View `
 `;
 
 export const Header = styled.View `
+    position: fixed;
     width: 100%;
     height: 12%;
 

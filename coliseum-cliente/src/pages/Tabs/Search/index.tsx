@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { TouchableHighlight, View, Text } from 'react-native';
-
 import { useForm, Controller } from 'react-hook-form';
 
 import { Input } from '../../styles';
@@ -33,14 +31,6 @@ interface Event {
 
 
 export default function Search() {
-
-  const [events, setEvents] = useState<Event[]>([]);
-
-      useEffect(() => {
-        api.get('api/events').then(response => {
-            setEvents(response.data);
-        })
-    });
 
     // Faz o componente de filtro sumir quando clicado fora
     const [ isVisible, setIsVisible ] = useState(false);
@@ -88,18 +78,18 @@ export default function Search() {
                 }
             </FilterComponent>
             <Header>
-            <LinearGradient
-                colors={['#FF4D00', '#FF9345']}
-                start={[0,1]}
-                end={[1,0]}
-                style={{
-                position: 'absolute',
-                width: "100%",
-                height: "100%",
-                borderBottomRightRadius: 35,
-                borderBottomLeftRadius: 35,
-                }}
-            />
+              <LinearGradient
+                  colors={['#FF4D00', '#FF9345']}
+                  start={[0,1]}
+                  end={[1,0]}
+                  style={{
+                  position: 'absolute',
+                  width: "100%",
+                  height: "100%",
+                  borderBottomRightRadius: 35,
+                  borderBottomLeftRadius: 35,
+                  }}
+              />
                 <InputBox>
                     <TouchableOpacity onPress={handleSubmit(onSubmit)}>
                       <Icon name="search" size={20} color="#535353" />
@@ -123,11 +113,10 @@ export default function Search() {
                 </FilterBox> 
             </Header>
             { searchText && 
-            <TextBox>
-                <SearchText>Você pesquisou por... </SearchText> 
-                {/* depois colocar o value do input quando for pesquisar */}
-            <SearchText style={{color: "#32CFE3"}}>{hasSearch}</SearchText>
-            </TextBox>
+              <TextBox>
+                  <SearchText>Você pesquisou por... </SearchText> 
+                  <SearchText style={{color: "#32CFE3"}}>{hasSearch}</SearchText>
+              </TextBox>
             }
 
             <Scroll>

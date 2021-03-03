@@ -35,10 +35,6 @@ export default function Account() {
     const [ user_id, setUserId ] = useState();
 
     const [ authorization, setAuthorization ] = useState("");
-    const isAuth = useAuth();
-    console.log("oi")
-    isAuth.setAuth(true) 
-    console.log(isAuth.setAuth(true))
 
     //envia a data do form pro back alterar
     const onSubmit = (data: EditData) => { 

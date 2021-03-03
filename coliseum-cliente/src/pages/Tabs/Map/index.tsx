@@ -32,7 +32,7 @@ export default function EventsMap() {
 
     return (
         <Content>
-          <MapView
+          {/* <MapView
               provider={PROVIDER_GOOGLE}
               style={{
                 width: Dimensions.get('window').width,
@@ -72,7 +72,7 @@ export default function EventsMap() {
                 })
             }
             
-          </MapView>
+          </MapView> */}
         </Content>
     );
 }
