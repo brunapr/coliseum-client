@@ -9,6 +9,7 @@ import Tabs from './src/pages/Tabs/index';
 import EventDetails from './src/pages/EventDetails/index';
 
 import { user_token, useAuth, checkIsLoggedIn } from './src/services/auth';
+import Comments from './src/pages/Comments';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -48,6 +49,10 @@ export default function App() {
           <Screen
             name='EventDetails'
             component={EventDetails}
+          />
+          <Screen
+            name='Comments'
+            component={Comments}
           />
         </Navigator>
       </NavigationContainer>

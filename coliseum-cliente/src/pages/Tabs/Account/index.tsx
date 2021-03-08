@@ -35,6 +35,10 @@ export default function Account() {
     const [ user_id, setUserId ] = useState();
 
     const [ authorization, setAuthorization ] = useState("");
+    const isAuth = useAuth();
+    console.log("oi")
+    isAuth.setAuth(true) 
+    console.log(isAuth.setAuth(true))
 
     //envia a data do form pro back alterar
     const onSubmit = (data: EditData) => { 
@@ -55,7 +59,6 @@ export default function Account() {
             setUserDetails(response.data);
             setUserId(response.data.id)
         }, (error => {
-            console.log("Erro");
             navigation.navigate('Login')
         }))
     })

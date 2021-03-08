@@ -37,6 +37,10 @@ export default function EventDetails(props:any) {
     const [ promoterPhone, setPromoterPhone ] = useState();
     const [ promoterName, setPromoterName ] = useState();
 
+    function handleNavigateToComments(id: number) {
+        navigation.navigate('Comments', { id });
+    }
+
     const navigation = useNavigation();
 
     function participate(id:any){
@@ -120,7 +124,7 @@ export default function EventDetails(props:any) {
                         </View>
                     </MainData>
                   
-                    <Icon name="message-square" size={24} color="#fff" style={{zIndex: 1, marginRight: "7.5%"}}/>
+                    <Icon onPress={() => handleNavigateToComments(event_id)} name="message-square" size={24} color="#fff" style={{zIndex: 1, marginRight: "7.5%"}}/>
                 </MainInfo>
             </Header>
 

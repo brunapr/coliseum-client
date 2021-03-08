@@ -23,6 +23,7 @@ export default function EventsMap() {
     useFocusEffect(() => {
         api.get('api/events').then(response => {
             setEvents(response.data);
+            console.log(response.data)
         })
     });
 
