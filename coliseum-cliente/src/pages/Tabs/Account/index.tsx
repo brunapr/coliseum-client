@@ -54,14 +54,14 @@ export default function Account() {
     //abre e fecha a aba de editar senha
     const [editPassword, setEditPassword] = useState(false);
 
-    useFocusEffect(() => {
+    useEffect(() => {
         api.get('api/getDetails', { headers: { Authorization: authorization } }).then(response => {
             setUserDetails(response.data);
             setUserId(response.data.id)
         }, (error => {
             navigation.navigate('Login')
         }))
-    })
+    }, [authorization])
 
     user_token().then(value => {
         setAuthorization(value);

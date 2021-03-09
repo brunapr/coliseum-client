@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import { Container, CloseIcon, Content, Input, SendButton, SendText, Title } from './styles';
+import { Container, CloseIcon, Content, Input, SendButton, SendText, Title, InputBox } from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import api from '../../services/api';
 import { user_token } from '../../services/auth';
@@ -15,6 +15,14 @@ export default function CreateCommentary(props:any) {
 
     const { control, handleSubmit, errors } = useForm({ mode: 'onTouched' });
     const [ authorization, setAuthorization ] = useState("");
+    const [ userName, setUserName ] = useState();
+
+    useEffect(() => {
+        console.log(authorization)
+        api.get("api/getDetails", { headers: { Authorization: authorization } }).then( response => {
+            setUserName(response.data.name);
+        });
+    }, [authorization])
 
     user_token().then(value => {
         setAuthorization(value);
@@ -40,16 +48,16 @@ export default function CreateCommentary(props:any) {
             </CloseIcon>
             
             <Content>
-                <Title>Deixe um comentário</Title>
-                <View>
+                <InputBox>
+                    <Title>Você está postando como {userName}</Title>
                     <Controller
                         control={control}
                         render={(props) => (
                             <Input
-                                placeholder="Escreva o que você deseja comentar..."
+                                placeholder="Escreva seu comentário aqui!"
                                 autoCorrect={false}
                                 multiline
-                                numberOfLines={10}
+                                numberOfLines={20}
                                 onBlur={props.onBlur}
                                 onChangeText={(value:any) => props.onChange(value)}
                                 value={props.value}
@@ -66,7 +74,7 @@ export default function CreateCommentary(props:any) {
                     <SendButton onPress={handleSubmit(onSubmit, onError)}>
                         <SendText>ENVIAR</SendText>
                     </SendButton>
-                </View>
+                </InputBox>
             </Content>
         </Container>
     );

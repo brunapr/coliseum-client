@@ -4,7 +4,7 @@ export const Container = styled.View `
     width: 100%;
     height: 100%;
 
-    background-color: #F2F2F2;
+    background-color: rgba(000,000,000,0.8);
 
     display: flex;
     flex-direction: column;
@@ -19,28 +19,28 @@ export const CloseIcon = styled.TouchableOpacity `
 `;
 
 export const Content = styled.View `
-    width: 90%;
+    width: 85%;
     margin-top: 30%;
 `;
 
 export const Input = styled.TextInput `
     width: 100%;
-    height: 70%;
+    height: 75%;
     padding: 4%;
     padding-left: 8%;
     background: #FFFFFF;
-    opacity: 0.7;
 
     border: 1px solid #FFFFFF;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
 `;
 
 export const SendButton = styled.TouchableOpacity `
     background-color: #069DB1;
     padding: 4%;
-    border-radius: 50px;
-    margin-top: 15%;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 
     display: flex;
     justify-content: center;
@@ -54,10 +54,19 @@ export const SendText = styled.Text `
 `;
 
 export const Title = styled.Text `
-    font-size: 22px;
+    font-size: 14px;
     font-style: italic;
-    font-weight: bold;
-    opacity: 0.5;
-    margin-bottom: 5%;
+    color: white;
+    padding: 0 5% 0 5%;
+    margin-bottom: 4%;
     text-align: center;
+`;
+
+export const InputBox = styled.View `
+    background-color: rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 50px;
+    height: 80%;
 `;
