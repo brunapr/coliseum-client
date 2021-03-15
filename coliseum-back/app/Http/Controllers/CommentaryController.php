@@ -14,9 +14,7 @@ class CommentaryController extends Controller
      * @param int $id
      */
     public function getEventComments($id) {
-        $event = Event::findOrFail($id);
-        $comments = $event->comments;
-
+        $comments = Commentary::where('event_id', $id)->with('user')->get();
         if ($comments == null) {
             return response()->json("no comments found", 404);
         }

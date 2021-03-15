@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import api from '../../../services/api';
-import { View, Text, Button, ScrollView, TouchableHighlight} from 'react-native';
+import { ScrollView } from 'react-native';
 
-import { Header, Title, SubTitle, Content, DivButtons, Body, CurrentContainer, PreviusContainer, ButtonUnable, ButtonAble, ButtonText, ButtonDelete} from './styles';
+import { Header, Content, DivButtons, Body, CurrentContainer, PreviusContainer, ButtonUnable, ButtonAble, ButtonText, ButtonDelete} from './styles';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 

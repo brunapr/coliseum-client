@@ -2,16 +2,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-import { View, Text, Button, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { InputLabel, Input } from '../../styles';
 import { Header, Title, SubTitle, Content, SubmitButton, Form, FormBox, LogoutBox, SubmitButtonText, ButtonsContainer } from './styles';
 
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { TextInputMask } from 'react-native-masked-text';
 import { RadioButton } from 'react-native-paper';
 
 import api from '../../../services/api';
-import { user_token, useAuth } from '../../../services/auth';
+import AuthContext from '../../../services/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface EditData {
@@ -26,6 +26,8 @@ interface EditData {
 
 export default function Account() {
 
+    const Auth  = useContext(AuthContext);
+
     const navigation = useNavigation();
 
     const { control, getValues, handleSubmit, errors } = useForm({ mode: 'onTouched' });
@@ -33,12 +35,6 @@ export default function Account() {
     //pega todos os detalhes do usuario e o id
     const [ userDetails, setUserDetails ] = useState<EditData>();
     const [ user_id, setUserId ] = useState();
-
-    const [ authorization, setAuthorization ] = useState("");
-    const isAuth = useAuth();
-    console.log("oi")
-    isAuth.setAuth(true) 
-    console.log(isAuth.setAuth(true))
 
     //envia a data do form pro back alterar
     const onSubmit = (data: EditData) => { 
@@ -55,17 +51,13 @@ export default function Account() {
     const [editPassword, setEditPassword] = useState(false);
 
     useEffect(() => {
-        api.get('api/getDetails', { headers: { Authorization: authorization } }).then(response => {
+        api.get('api/getDetails', { headers: { Authorization: Auth.token } }).then(response => {
             setUserDetails(response.data);
             setUserId(response.data.id)
         }, (error => {
             navigation.navigate('Login')
         }))
-    }, [authorization])
-
-    user_token().then(value => {
-        setAuthorization(value);
-    });
+    }, [Auth])
 
     //aparecer caregamento enquanto userDetails não recebe resposta
     if (!userDetails) {
@@ -74,9 +66,9 @@ export default function Account() {
 
     //deslogar
     function handleLogout() {
-        api.get('api/logout', { headers: { Authorization: authorization } }).then(response => {
+        api.get('api/logout', { headers: { Authorization: Auth.token } }).then(response => {
             AsyncStorage.removeItem('token')
-            setAuthorization("");
+            Auth.setToken("");
             setUserDetails(undefined);
             alert('Você foi deslogado com sucesso!')
             console.log('Você foi deslogado com sucesso!')

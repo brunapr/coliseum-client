@@ -90,5 +90,9 @@ class User extends Authenticatable
 
     public function participating() {
         return $this->belongsToMany(Event::class, 'participating');
-      }
+    }
+
+    public function comments() {
+    return $this->hasMany(Commentary::class);
+    }
 }

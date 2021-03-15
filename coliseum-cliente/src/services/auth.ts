@@ -1,20 +1,26 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React from 'react';
-import { useContext, createContext, useState } from 'react';
+import { createContext } from 'react';
+import { Data } from '../pages/EventDetails/styles';
 
-var AuthContext = createContext({auth: false, setAuth: (newAuth:boolean) => {return newAuth}});
-export const useAuth = () => useContext(AuthContext);
-
-var Auth = "";
 export var isLoggedIn = false;
 
+interface Data {
+    token: string;
+    setToken: any;
+    signed: boolean;
+}
+
+const AuthContext = createContext<Data>({} as Data);
+
+export default AuthContext;
+
+var Auth = '';
+
 export const user_token = async () => {
-    try {
-        const token = await AsyncStorage.getItem('token');
-        if(token){
-            Auth = 'Bearer '.concat(token);
-        } 
-    } catch(e) {
+    const token = await AsyncStorage.getItem('token');
+    if(token) {
+        Auth = 'Bearer '.concat(token);
+    } else {
         Auth = "";
         console.log('Não foi possível achar o token.')
     }

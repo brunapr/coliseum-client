@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View, Text, Image, Alert } from 'react-native';
 
 import { LinearGradient } from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/Feather';
@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import Phone from '../../components/PromoterPhone/index';
 import img from '../../../assets/unnamed.jpg';
-import { user_token } from '../../services/auth';
+import AuthContext from '../../services/auth';
 import api from '../../services/api';
 
 interface EventData {
@@ -27,33 +27,56 @@ interface EventData {
 
 export default function EventDetails(props:any) {
 
+    const Auth = useContext(AuthContext);
+
     const event_id = props.route.params.id;
     const [ buttonClicked, setButtonClicked ] = useState(false);
     const [ infoClicked, setInfoClicked ] = useState(false);
 
     const [ user_id , setUserId ] = useState(); 
-    const [ authorization, setAuthorization ] = useState("");
     const [ eventDetails, setEventDetails ] = useState<EventData>();
     const [ promoterPhone, setPromoterPhone ] = useState();
     const [ promoterName, setPromoterName ] = useState();
 
+    const noAccountAlert = () => 
+        Alert.alert(
+            "Atenção!",
+            "Você não está logado, portando, não pode fazer isso. Gostaria de entrar com uma conta?",
+            [
+                {
+                    text: "Não",
+                    onPress: () => console.log("Não"),
+                    style: "cancel"
+                },
+                { text: "Sim", onPress: () => navigation.navigate('Login') }
+            ]
+    );
+
     function handleNavigateToComments(id: number) {
-        navigation.navigate('Comments', { id });
+        if (Auth.token == "" || Auth.token == undefined) {
+            noAccountAlert();
+        } else {
+            navigation.navigate('Comments', { id });
+        }
     }
 
     const navigation = useNavigation();
 
     function participate(id:any){
-        api.get(`api/participate/event/${id}`, { headers: { Authorization: authorization } }).then( response => {
-            setButtonClicked(true)
-        }, (error => {
-            setButtonClicked(false)
-            alert("Parece que tivemos um problema. Tente mais tarde.")
-        }))
+        if (Auth.token == "" || Auth.token == undefined) {
+            noAccountAlert();
+        } else {
+            api.get(`api/participate/event/${id}`, { headers: { Authorization: Auth.token } }).then( response => {
+                setButtonClicked(true)
+            }, (error => {
+                setButtonClicked(false)
+                alert("Parece que tivemos um problema. Tente mais tarde.")
+            }))
+        }
     }
 
     function stopParticipate(id:any){
-        api.get(`api/block/event/${id}`, { headers: { Authorization: authorization } }).then( response => {
+        api.get(`api/block/event/${id}`, { headers: { Authorization: Auth.token } }).then( response => {
             try{
                 setButtonClicked(false)
             } catch{
@@ -62,10 +85,6 @@ export default function EventDetails(props:any) {
             }
         }) 
     }
-
-    user_token().then(value => {
-        setAuthorization(value);
-    });
 
     useEffect(() => {
         api.get(`api/event/${event_id}`).then( response => {

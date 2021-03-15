@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
-import React, { useState,  } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useEffect, useState,  } from 'react';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from './src/pages/Login/index';
@@ -8,7 +8,7 @@ import Register from './src/pages/Register/index';
 import Tabs from './src/pages/Tabs/index';
 import EventDetails from './src/pages/EventDetails/index';
 
-import { user_token, useAuth, checkIsLoggedIn } from './src/services/auth';
+import AuthContext, { user_token } from './src/services/auth';
 import Comments from './src/pages/Comments';
 
 const { Navigator, Screen } = createStackNavigator();
@@ -16,25 +16,35 @@ const { Navigator, Screen } = createStackNavigator();
 export default function App() {
 
   const [ authorization, setAuthorization ] = useState("");
-  const isAuth = useAuth();
-  isAuth.setAuth(true) 
+  const [ checkLogIn, setCheckLogIn ] = useState(false);
 
-  user_token().then(value => {
-    setAuthorization(value);
+  useEffect(() => {
+    user_token().then(value => {
+      setAuthorization(value);
+    });
+  }, [])
+
+  function checkIsLoggedIn() {
+    if (authorization != "") {
+        setCheckLogIn(true);
+    } else {
+        setCheckLogIn(false);
+    }
+  }
+
+  useEffect(() => {
     checkIsLoggedIn();
-  });
+  }, [authorization, checkLogIn])
 
-  const AuthContext = React.createContext(authorization);
-  
   return (
-    <AuthContext.Provider value={authorization}>
+    <AuthContext.Provider value={{token: authorization, setToken: setAuthorization, signed: checkLogIn}}>
       <NavigationContainer>
         <Navigator
           screenOptions={{
             headerShown: false
           }}
         >
-          <Screen 
+          <Screen
             name='Tabs'
             component={Tabs}
           />

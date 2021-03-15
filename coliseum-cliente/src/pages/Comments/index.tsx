@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
@@ -9,7 +9,10 @@ import CreateCommentary from '../../components/CreateCommentary/index';
 interface Commentary {
     id: number;
     commentary: string;
-    user_id: number;
+    user: {
+        name: string;
+    };
+    userName: string;
 }
 
 export default function CommentsPage(props:any) {
@@ -30,10 +33,6 @@ export default function CommentsPage(props:any) {
             console.log(event_id)
             setCommentaries(response.data);
         })
-
-        // api.get(`api/user/${user_id}`).then( response => {
-        //     setPromoterPhone(response.data.promoter.phone)
-        // })
     }, [isVisible])
 
     return(
@@ -64,7 +63,7 @@ export default function CommentsPage(props:any) {
                         commentaries.map(commentary => {
                             return(
                                 <CommentBox key={commentary.id}>
-                                    <UserName>Alguém disse:</UserName>
+                                    <UserName>{commentary.user.name}:</UserName>
                                     <UserComment>"{commentary.commentary}"</UserComment>
                                 </CommentBox>
                             );

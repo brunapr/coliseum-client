@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { Text } from 'react-native';
 import { Container, CloseIcon, Content, Input, SendButton, SendText, Title, InputBox } from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import api from '../../services/api';
-import { user_token } from '../../services/auth';
+import AuthContext from '../../services/auth';
 import { useForm, Controller } from 'react-hook-form';
 
 interface FormData {
@@ -14,25 +14,22 @@ interface FormData {
 export default function CreateCommentary(props:any) {
 
     const { control, handleSubmit, errors } = useForm({ mode: 'onTouched' });
-    const [ authorization, setAuthorization ] = useState("");
     const [ userName, setUserName ] = useState();
+
+    const authorization = useContext(AuthContext);
 
     useEffect(() => {
         console.log(authorization)
-        api.get("api/getDetails", { headers: { Authorization: authorization } }).then( response => {
+        api.get("api/getDetails", { headers: { Authorization: authorization.token } }).then( response => {
             setUserName(response.data.name);
         });
     }, [authorization])
-
-    user_token().then(value => {
-        setAuthorization(value);
-    });
 
     const onSubmit = (data: FormData) => { 
         console.log(data)
         data.event_id = props.event_id;
         console.log(data.event_id)
-        api.post('api/commentary', data, { headers: { Authorization: authorization } }).then(response => {
+        api.post('api/commentary', data, { headers: { Authorization: authorization.token } }).then(response => {
             alert('Comentário postado com sucesso!');
             props.commentaryClose(false);
         }, 

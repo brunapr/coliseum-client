@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Text, ImageBackground } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
+import AuthContext from '../../services/auth';
 
 import api from '../../services/api';
 
@@ -19,17 +20,17 @@ interface FormData {
 
 export default function Login() {
 
+    const Auth = useContext(AuthContext);
+
     const { control, handleSubmit, errors } = useForm({ mode: 'onTouched' });
     const onSubmit = (data: FormData) => { 
         console.log(data)
         api.post('api/login', data).then(response => {
             console.log(response.data.message);
             alert('Login feito com sucesso!');
-            
             const token = response.data.token;
-
             AsyncStorage.setItem('token', token);
-
+            Auth.setToken("Bearer " + token);
             navigation.navigate('Home');
         }, 
         (error => ('Login não pode ser concluído.'))) };

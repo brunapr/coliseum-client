@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -12,18 +12,18 @@ import LoginNavigate from '../../components/LoginNavigate';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { user_token, checkIsLoggedIn, isLoggedIn } from '../../services/auth';
+import AuthContext from '../../services/auth';
 
 const Tab = createBottomTabNavigator();
 
-    export default function MyTabs() {
+    export default function MyTabs(props:any) {
 
-        const [ checkLogIn, setCheckLogIn ] = useState(false);
+        const Auth = useContext(AuthContext);
+        const [ checkLogIn, setCheckLogin ] = useState(false);
 
-        user_token().then(value => {
-            checkIsLoggedIn();
-            setCheckLogIn(isLoggedIn);
-        });
+        useEffect(() => {   
+            setCheckLogin(Auth.signed);
+        }, [Auth.signed, Auth, Auth.token, checkLogIn])
 
         return (
             <Tab.Navigator
@@ -54,9 +54,8 @@ const Tab = createBottomTabNavigator();
                     ),
                 }}
                 />
-
                 {
-                    checkLogIn && 
+                    Auth.signed == true && 
                         <Tab.Screen name="Event" component={Event}
                         options={{
                             tabBarIcon:({}) =>(
@@ -67,7 +66,7 @@ const Tab = createBottomTabNavigator();
                 }
 
                 {
-                    checkLogIn ? 
+                    Auth.signed == true ? 
                         <Tab.Screen name="User" component={Account} 
                         options={{
                             tabBarIcon:({}) =>(
