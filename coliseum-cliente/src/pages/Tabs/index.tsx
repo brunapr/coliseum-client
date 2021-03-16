@@ -17,8 +17,9 @@ import AuthContext from '../../services/auth';
 const Tab = createBottomTabNavigator();
 
     export default function MyTabs(props:any) {
-
+        
         const Auth = useContext(AuthContext);
+
         const [ checkLogIn, setCheckLogin ] = useState(false);
 
         useEffect(() => {   

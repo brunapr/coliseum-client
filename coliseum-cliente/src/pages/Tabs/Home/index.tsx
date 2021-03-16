@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import api from '../../../services/api';
 
@@ -12,7 +12,6 @@ import { useNavigation } from '@react-navigation/native';
 
 import EventCard from '../../../components/EventCard/index';
 import EventSmallCard from '../../../components/EventSmallCard/index';
-import EventDetails from '../../EventDetails/index';
 
 Home.navigationOptions = {
     header: null,

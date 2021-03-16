@@ -90,13 +90,15 @@ export default function EventDetails(props:any) {
         api.get(`api/event/${event_id}`).then( response => {
             setEventDetails(response.data)
             setPromoterName(response.data.user.name)
-            setUserId(response.data.user.id)
+            setUserId(response.data.user_id)
         })
+    }, [event_id])
 
+    useEffect(() => {
         api.get(`api/user/${user_id}`).then( response => {
             setPromoterPhone(response.data.promoter.phone)
         })
-    }, [event_id])
+    }, [user_id])
 
     if (!eventDetails) {
         return <Container style={{marginTop: '50%'}}><Text style={{color: '#FF4D00', fontSize: 24}}>Carregando...</Text></Container>;

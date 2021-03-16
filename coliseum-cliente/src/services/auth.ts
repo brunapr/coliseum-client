@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext } from 'react';
-import { Data } from '../pages/EventDetails/styles';
 
 export var isLoggedIn = false;
 
@@ -12,26 +11,18 @@ interface Data {
 
 const AuthContext = createContext<Data>({} as Data);
 
-export default AuthContext;
-
-var Auth = '';
-
 export const user_token = async () => {
-    const token = await AsyncStorage.getItem('token');
-    if(token) {
-        Auth = 'Bearer '.concat(token);
-    } else {
-        Auth = "";
-        console.log('Não foi possível achar o token.')
+    let token = '';
+    try {
+        const value = await AsyncStorage.getItem('token');
+        if(value !== null) {
+            token = 'Bearer '.concat(value);
+            return token;
+        }
+    } catch (e) {
+        console.log("Sem token.")
     }
-    return Auth;
+    return token;
 };
 
-export function checkIsLoggedIn() {
-    if(Auth != ""){
-        isLoggedIn = true;
-    } else {
-        isLoggedIn = false;
-    }
-    return isLoggedIn;
-}
+export default AuthContext;
