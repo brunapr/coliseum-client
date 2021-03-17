@@ -26,7 +26,8 @@ export const SubTitle = styled.Text `
     font-weight: bold;
     font-style: italic;
     opacity: 0.5;
-    width: 50%;
+    width: 100%;
+    text-align: center;
 `;
 
 export const Form = styled.View `

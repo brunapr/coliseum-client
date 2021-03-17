@@ -13,6 +13,6 @@ class CommentarySeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Commentary::factory()->count(20)->create();
     }
 }

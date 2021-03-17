@@ -39,7 +39,7 @@ export const DivEventDetails = styled.View `
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
 
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -50,8 +50,7 @@ export const DivEventDetails = styled.View `
 export const DivEventInformation = styled.View `
   
     width: 100%;
-    height: 50%;
-
+    height: 40%;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -61,21 +60,18 @@ export const DivEventInformation = styled.View `
 
 
 export const DivEventName = styled.View `
-  
-    width: 70%;
+
+    width: 75%;
     height: 100%;
     margin-left: 5%;
-
+    
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    
 `;
 
 export const DivEventDate = styled.View `
   
-    width: 20%;
+    width: 15%;
     height: 100%;
 
     display: flex;
@@ -88,11 +84,10 @@ export const DivEventDate = styled.View `
 export const DivEventAddress = styled.View `
   
     width: 95%;
-    height: 50%;
 
     display: flex;
     flex-direction: row;
-    margin-left: 3.5%;
+    margin-left: 5%;
 
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -101,7 +96,6 @@ export const DivEventAddress = styled.View `
 
 export const EventName = styled.Text `
     color: black;
-    text-align: center;
     font-size: 14px;
     font-weight: bold;
 
@@ -122,7 +116,6 @@ export const EventAddress = styled.Text `
 `;
 
 export const TouchableCard = styled.TouchableOpacity `
-
     height: 220px;
     width: 350px;
     

@@ -22,7 +22,7 @@ class PromoterFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'phone' => $this->faker->cellphoneNumber,
         ];
     }
 }

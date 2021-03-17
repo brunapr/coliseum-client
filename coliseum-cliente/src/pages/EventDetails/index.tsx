@@ -96,6 +96,7 @@ export default function EventDetails(props:any) {
 
     useEffect(() => {
         api.get(`api/user/${user_id}`).then( response => {
+            console.log(response.data)
             setPromoterPhone(response.data.promoter.phone)
         })
     }, [user_id])
@@ -172,19 +173,19 @@ export default function EventDetails(props:any) {
 
                 <DetailsContainer>
                   
-                    <DetailType>Criado por</DetailType>
                     <PromoterContainer>
-                        <DetailData>{promoterName} </DetailData> 
+                        <DetailType>Criado por </DetailType>
                         <InfoButton onPress={() => setInfoClicked(!infoClicked)}>
-                            <Icon name="info" size={20} color="#000"/>
+                                <Icon name="info" size={20} color="#000"/>
                         </InfoButton>
                         { infoClicked && <Phone phone={promoterPhone}/> }
                     </PromoterContainer>
+                    <DetailData>{promoterName} </DetailData> 
                 </DetailsContainer>
 
                 <DetailsContainer>
                     <DetailType>Data e Hora</DetailType>
-                    <DetailData>{eventDetails.date} | {eventDetails.starts_at}</DetailData>
+                    <DetailData>{eventDetails.date} | {eventDetails.starts_at}h</DetailData>
                 </DetailsContainer>
 
                 <DetailsContainer>

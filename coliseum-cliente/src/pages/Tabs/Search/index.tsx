@@ -124,7 +124,7 @@ export default function Search() {
                 {/* componente dos eventos */}
                 {searchResults?.map(searchResult => {
                   return(
-                      <EventSmallCard key={searchResult.event.id} name={searchResult.event.name} date={searchResult.event.date} address={searchResult.event.neighborhood}/>
+                      <EventSmallCard key={searchResult.event.id} name={searchResult.event.name} date={searchResult.event.date} address={searchResult.event.city}/>
                   )
                 })}
               </WrapResults>

@@ -27,13 +27,13 @@ export default function EventsMap() {
         })
     });
 
-    function handleNavigateToEventDetails(id:any) {
-        navigation.navigate('EventDetails', { eventId:id });
+    function handleNavigateToEventDetails(id: number) {
+        navigation.navigate('EventDetails', { id });
     }
 
     return (
         <Content>
-          {/* <MapView
+          <MapView
               provider={PROVIDER_GOOGLE}
               style={{
                 width: Dimensions.get('window').width,
@@ -48,7 +48,7 @@ export default function EventsMap() {
               }}
           >
 
-            {
+            {   
                 events.map(event => {
                     return (
                         <Marker
@@ -61,7 +61,7 @@ export default function EventsMap() {
                                 latitude: event.latitude,
                                 longitude: event.longitude,
                             }}
-                            onPress={() => {handleNavigateToEventDetails(event.id)} }
+                            onPress={ ()=> {handleNavigateToEventDetails(event.id)} }
                         >
                           <Image 
                             source={mapMarker}
@@ -73,7 +73,7 @@ export default function EventsMap() {
                 })
             }
             
-          </MapView> */}
+          </MapView>
         </Content>
     );
 }

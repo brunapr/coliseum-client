@@ -64,3 +64,9 @@ export const CreateCommentComponent = styled.View `
     height: 100%;
     z-index: 1;
 `;
+
+export const NoCommentaries = styled.Text `
+    text-align: center;
+    font-size: 18px;
+    opacity: 0.5;
+`;
